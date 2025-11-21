@@ -1,3 +1,16 @@
 2025 APMCM Problems
 ControlSheet
 tmp
+# Generated figures and reports
+Paper/figures/*.png
+Paper/figures/summary.txt
+
+# LaTeX build artifacts
+Paper/*.aux
+Paper/*.log
+Paper/*.synctex.gz
+Paper/*.fdb_latexmk
+Paper/*.fls
+Paper/*.toc
+Paper/*.xdv
+Paper/main.pdf
