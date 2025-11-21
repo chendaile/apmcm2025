@@ -29,29 +29,29 @@ import gurobipy as gp
 import pandas as pd
 from gurobipy import GRB
 
-
 BASE_DIR = Path(__file__).resolve().parents[1]
 WORKBOOK_PATH = BASE_DIR / "QuestionD" / "Table.xlsx"
+OUTPUT_DIR = BASE_DIR / "output" / "Q1"
 
 
 @dataclass
 class Generator:
     """存放 UC 模型所需的单机参数。"""
 
-    unit_id: int          # 机组编号
-    p_max: float          # 最大出力（MW）
-    p_min: float          # 最小出力（MW）
-    min_up: int           # 最小开机时间（h）
-    min_down: int         # 最小停机时间（h）
-    startup_cost: float   # 启动成本
+    unit_id: int  # 机组编号
+    p_max: float  # 最大出力（MW）
+    p_min: float  # 最小出力（MW）
+    min_up: int  # 最小开机时间（h）
+    min_down: int  # 最小停机时间（h）
+    startup_cost: float  # 启动成本
     shutdown_cost: float  # 停机成本
-    ramp_up: float        # 爬坡上限（MW/h）
-    ramp_down: float      # 下坡上限（MW/h）
-    init_up_time: float   # 初始已开机时长（h）
-    init_down_time: float # 初始已停机时长（h）
-    cost_a: float         # 燃料成本二次项系数
-    cost_b: float         # 燃料成本一次项系数
-    cost_c: float         # 燃料成本常数项
+    ramp_up: float  # 爬坡上限（MW/h）
+    ramp_down: float  # 下坡上限（MW/h）
+    init_up_time: float  # 初始已开机时长（h）
+    init_down_time: float  # 初始已停机时长（h）
+    cost_a: float  # 燃料成本二次项系数
+    cost_b: float  # 燃料成本一次项系数
+    cost_c: float  # 燃料成本常数项
 
     @property
     def initially_on(self) -> int:
@@ -69,7 +69,9 @@ class Generator:
         return self.p_min if self.initially_on else 0.0
 
 
-def _parse_generator_tables(table1_df: pd.DataFrame, table2_df: pd.DataFrame) -> Dict[int, Generator]:
+def _parse_generator_tables(
+    table1_df: pd.DataFrame, table2_df: pd.DataFrame
+) -> Dict[int, Generator]:
     """将“表 1/表 2”中的机组参数合并至 Generator 对象。"""
 
     gens: Dict[int, Dict[str, float]] = {}
@@ -108,9 +110,19 @@ def _parse_generator_tables(table1_df: pd.DataFrame, table2_df: pd.DataFrame) ->
 
     parsed: Dict[int, Generator] = {}
     required_keys = {
-        "p_max", "p_min", "min_up", "min_down", "startup_cost", "shutdown_cost",
-        "ramp_up", "ramp_down", "init_up_time", "init_down_time",
-        "cost_a", "cost_b", "cost_c",
+        "p_max",
+        "p_min",
+        "min_up",
+        "min_down",
+        "startup_cost",
+        "shutdown_cost",
+        "ramp_up",
+        "ramp_down",
+        "init_up_time",
+        "init_down_time",
+        "cost_a",
+        "cost_b",
+        "cost_c",
     }
     for unit, params in gens.items():
         missing = {key for key in required_keys if key not in params}
@@ -161,7 +173,9 @@ def load_problem_data(workbook_path: Path) -> Tuple[Dict[int, Generator], List[f
     return generators, loads
 
 
-def build_uc_model(generators: Dict[int, Generator], loads: List[float]) -> Tuple[gp.Model, Dict[str, gp.tupledict]]:
+def build_uc_model(
+    generators: Dict[int, Generator], loads: List[float]
+) -> Tuple[gp.Model, Dict[str, gp.tupledict]]:
     """创建并返回 UC 模型及变量字典。"""
 
     model = gp.Model("apmcm_q1_classical_uc")
@@ -282,14 +296,60 @@ def build_uc_model(generators: Dict[int, Generator], loads: List[float]) -> Tupl
     return model, {"u": u, "p": p, "y": y, "z": z}
 
 
-def solve_and_report(model: gp.Model, vars_dict: Dict[str, gp.tupledict], loads: List[float]) -> None:
-    """求解模型并输出每小时的机组出力。"""
+def export_variables_to_excel(model: gp.Model, path: Path) -> None:
+    """Export all variable values to an Excel file."""
+    sheet_map = {"u": "commitment", "y": "startup", "z": "shutdown", "p": "generation"}
+
+    sheets: Dict[str, List[dict]] = {}
+    for var in model.getVars():
+        value = var.X
+        if value is None or abs(value) < 1e-9:
+            continue
+        prefix = var.VarName.split("[", 1)[0]
+        sheet_name = sheet_map.get(prefix, "others")
+        sheets.setdefault(sheet_name, []).append(
+            {"variable": var.VarName, "value": value}
+        )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with pd.ExcelWriter(path, engine="xlsxwriter") as writer:
+        for name, records in sheets.items():
+            df = pd.DataFrame(records)
+            df.to_excel(writer, sheet_name=name[:31], index=False)
+
+
+def solve_and_report(
+    model: gp.Model, vars_dict: Dict[str, gp.tupledict], loads: List[float]
+) -> None:
+    """求解模型并输出每小时的机组出力，并记录日志/导出结果。"""
+
+    log_lines: List[str] = []
+
+    def record(msg: str) -> None:
+        print(msg)
+        log_lines.append(msg)
 
     model.optimize()
 
+    if model.Status in (GRB.INFEASIBLE, GRB.INF_OR_UNBD):
+        record("原模型不可行，生成 IIS …")
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        model.computeIIS()
+        model.write(str(OUTPUT_DIR / "iis.ilp"))
+        relax_value = model.feasRelaxS(
+            relaxobjtype=0, minrelax=True, vrelax=False, crelax=True
+        )
+        record(f"FeasRelax 松弛目标值: {relax_value:.4f}")
+        model.optimize()
+
     if model.Status != GRB.OPTIMAL:
-        print(f"模型状态：{model.Status}")
+        record(f"模型状态: {model.Status}")
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        (OUTPUT_DIR / "solve_log.txt").write_text(
+            "\n".join(log_lines), encoding="utf-8"
+        )
         return
+
+    export_variables_to_excel(model, OUTPUT_DIR / "solution_variables.xlsx")
 
     u = vars_dict["u"]
     p = vars_dict["p"]
@@ -297,20 +357,21 @@ def solve_and_report(model: gp.Model, vars_dict: Dict[str, gp.tupledict], loads:
     z = vars_dict["z"]
     units = sorted({idx[0] for idx in u.keys()})
 
-    print(f"最优成本: {model.objVal:,.2f}")
+    record(f"最优成本: {model.objVal:,.2f}")
     for t in range(len(loads)):
         committed = [
-            f"U{unit}={p[unit, t].X:.1f} MW"
-            for unit in units
-            if u[unit, t].X > 0.5
+            f"U{unit}={p[unit, t].X:.1f} MW" for unit in units if u[unit, t].X > 0.5
         ]
         committed_str = ", ".join(committed) if committed else "无机组出力"
-        print(f"Hour {t + 1:02d} (负荷={loads[t]:.1f} MW): {committed_str}")
+        record(f"Hour {t + 1:02d} (负荷={loads[t]:.1f} MW): {committed_str}")
         status_text = [
             f"U{unit}(u={int(round(u[unit, t].X))}, y={int(round(y[unit, t].X))}, z={int(round(z[unit, t].X))})"
             for unit in units
         ]
-        print("    状态:", ", ".join(status_text))
+        record("    状态: " + ", ".join(status_text))
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    (OUTPUT_DIR / "solve_log.txt").write_text("\n".join(log_lines), encoding="utf-8")
 
 
 def main() -> None:

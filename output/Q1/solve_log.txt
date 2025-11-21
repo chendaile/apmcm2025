@@ -1,0 +1,86 @@
+最优成本: 15,129.08
+Hour 01 (负荷=166.0 MW): U1=50.0 MW, U2=52.2 MW, U5=20.6 MW, U8=19.6 MW, U11=11.5 MW, U13=12.0 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 02 (负荷=196.0 MW): U1=50.0 MW, U2=58.6 MW, U5=22.4 MW, U8=33.0 MW, U11=16.0 MW, U13=16.0 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 03 (负荷=229.0 MW): U1=53.9 MW, U2=68.7 MW, U5=25.2 MW, U8=35.0 MW, U11=23.1 MW, U13=23.1 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 04 (负荷=257.0 MW): U1=60.8 MW, U2=76.6 MW, U5=27.4 MW, U8=35.0 MW, U11=28.6 MW, U13=28.6 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 05 (负荷=263.0 MW): U1=62.2 MW, U2=78.3 MW, U5=27.9 MW, U8=35.0 MW, U11=29.8 MW, U13=29.8 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 06 (负荷=252.0 MW): U1=59.5 MW, U2=75.2 MW, U5=27.0 MW, U8=35.0 MW, U11=27.6 MW, U13=27.6 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 07 (负荷=246.0 MW): U1=58.1 MW, U2=73.5 MW, U5=26.6 MW, U8=35.0 MW, U11=26.4 MW, U13=26.4 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 08 (负荷=213.0 MW): U1=50.0 MW, U2=64.2 MW, U5=24.0 MW, U8=35.0 MW, U11=19.9 MW, U13=19.9 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 09 (负荷=192.0 MW): U1=50.0 MW, U2=57.7 MW, U5=22.2 MW, U8=31.2 MW, U11=15.4 MW, U13=15.4 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 10 (负荷=161.0 MW): U1=50.0 MW, U2=51.0 MW, U5=20.3 MW, U8=17.1 MW, U11=10.7 MW, U13=12.0 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 11 (负荷=147.0 MW): U1=50.0 MW, U2=46.1 MW, U5=18.9 MW, U8=10.0 MW, U11=10.0 MW, U13=12.0 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 12 (负荷=160.0 MW): U1=50.0 MW, U2=50.7 MW, U5=20.2 MW, U8=16.5 MW, U11=10.5 MW, U13=12.0 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 13 (负荷=170.0 MW): U1=50.0 MW, U2=53.1 MW, U5=20.9 MW, U8=21.6 MW, U11=12.2 MW, U13=12.2 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 14 (负荷=185.0 MW): U1=50.0 MW, U2=56.3 MW, U5=21.8 MW, U8=28.2 MW, U11=14.4 MW, U13=14.4 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 15 (负荷=208.0 MW): U1=50.0 MW, U2=62.3 MW, U5=23.4 MW, U8=35.0 MW, U11=18.6 MW, U13=18.6 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 16 (负荷=232.0 MW): U1=54.6 MW, U2=69.5 MW, U5=25.5 MW, U8=35.0 MW, U11=23.7 MW, U13=23.7 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 17 (负荷=246.0 MW): U1=58.1 MW, U2=73.5 MW, U5=26.6 MW, U8=35.0 MW, U11=26.4 MW, U13=26.4 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 18 (负荷=241.0 MW): U1=56.8 MW, U2=72.1 MW, U5=26.2 MW, U8=35.0 MW, U11=25.5 MW, U13=25.5 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 19 (负荷=236.0 MW): U1=55.6 MW, U2=70.7 MW, U5=25.8 MW, U8=35.0 MW, U11=24.5 MW, U13=24.5 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 20 (负荷=225.0 MW): U1=52.9 MW, U2=67.6 MW, U5=24.9 MW, U8=35.0 MW, U11=22.3 MW, U13=22.3 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 21 (负荷=204.0 MW): U1=50.0 MW, U2=60.8 MW, U5=23.0 MW, U8=35.0 MW, U11=17.6 MW, U13=17.6 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 22 (负荷=182.0 MW): U1=50.0 MW, U2=55.7 MW, U5=21.6 MW, U8=26.8 MW, U11=14.0 MW, U13=14.0 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 23 (负荷=161.0 MW): U1=50.0 MW, U2=51.0 MW, U5=20.3 MW, U8=17.1 MW, U11=10.7 MW, U13=12.0 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+Hour 24 (负荷=131.0 MW): U1=50.0 MW, U2=33.6 MW, U5=15.4 MW, U8=10.0 MW, U11=10.0 MW, U13=12.0 MW
+    状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
+
+CPU model: AMD Ryzen 7 8845H w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 16 threads
+
+Optimize a model with 1156 rows, 576 columns and 3108 nonzeros
+Model fingerprint: 0x52d5748c
+Model has 144 quadratic objective terms
+Variable types: 144 continuous, 432 integer (432 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+02]
+  Objective range  [1e+00, 2e+02]
+  QObjective range [2e-02, 1e-01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 3e+02]
+Presolve removed 306 rows and 47 columns
+Presolve time: 0.02s
+Presolved: 1046 rows, 627 columns, 3349 nonzeros
+Presolved model has 144 quadratic objective terms
+Variable types: 242 continuous, 385 integer (385 binary)
+Found heuristic solution: objective 15350.141866
+Found heuristic solution: objective 15129.082382
+
+Root relaxation: interrupted, 967 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0          -    0      15129.0824 15127.7191  0.01%     -    0s
+
+Explored 1 nodes (967 simplex iterations) in 0.03 seconds (0.03 work units)
+Thread count was 16 (of 16 available processors)
+
+Solution count 2: 15129.1 15350.1 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.512908238245e+04, best bound 1.512771909350e+04, gap 0.0090%
+最优成本: 15,129.08

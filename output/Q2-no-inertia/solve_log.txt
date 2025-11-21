@@ -1,0 +1,139 @@
+最优成本: 15,129.08
+Hour 01 (系统负荷=166.0 MW)
+    出力: U1=50.0 MW, U2=52.2 MW, U5=20.6 MW, U8=19.6 MW, U11=11.5 MW, U13=12.0 MW
+    备用: U1 R=250.0, U2 R=127.8, U5 R=29.4, U8 R=15.4, U11 R=18.5, U13 R=28.0
+    负荷分配: Bus1=142.5, Bus11=11.5, Bus13=12.0
+Hour 02 (系统负荷=196.0 MW)
+    出力: U1=50.0 MW, U2=58.6 MW, U5=22.4 MW, U8=33.0 MW, U11=16.0 MW, U13=16.0 MW
+    备用: U1 R=250.0, U2 R=121.4, U5 R=27.6, U8 R=2.0, U11 R=14.0, U13 R=24.0
+    负荷分配: Bus2=84.0, Bus11=16.0, Bus13=16.0, Bus27=80.0
+Hour 03 (系统负荷=229.0 MW)
+    出力: U1=53.9 MW, U2=68.7 MW, U5=25.2 MW, U8=35.0 MW, U11=23.1 MW, U13=23.1 MW
+    备用: U1 R=246.1, U2 R=111.3, U5 R=24.8, U11 R=6.9, U13 R=16.9
+    负荷分配: Bus1=22.8, Bus11=23.1, Bus13=23.1, Bus19=80.0, Bus30=80.0
+Hour 04 (系统负荷=257.0 MW)
+    出力: U1=60.8 MW, U2=76.6 MW, U5=27.4 MW, U8=35.0 MW, U11=28.6 MW, U13=28.6 MW
+    备用: U1 R=239.2, U2 R=103.4, U5 R=22.6, U11 R=1.4, U13 R=11.4
+    负荷分配: Bus7=39.8, Bus11=28.6, Bus13=28.6, Bus20=80.0, Bus30=80.0
+Hour 05 (系统负荷=263.0 MW)
+    出力: U1=62.2 MW, U2=78.3 MW, U5=27.9 MW, U8=35.0 MW, U11=29.8 MW, U13=29.8 MW
+    备用: U1 R=237.8, U2 R=101.7, U5 R=22.1, U11 R=0.2, U13 R=10.2
+    负荷分配: Bus2=43.4, Bus11=29.8, Bus13=29.8, Bus19=80.0, Bus27=80.0
+Hour 06 (系统负荷=252.0 MW)
+    出力: U1=59.5 MW, U2=75.2 MW, U5=27.0 MW, U8=35.0 MW, U11=27.6 MW, U13=27.6 MW
+    备用: U1 R=240.5, U2 R=104.8, U5 R=23.0, U11 R=2.4, U13 R=12.4
+    负荷分配: Bus1=196.8, Bus11=27.6, Bus13=27.6
+Hour 07 (系统负荷=246.0 MW)
+    出力: U1=58.1 MW, U2=73.5 MW, U5=26.6 MW, U8=35.0 MW, U11=26.4 MW, U13=26.4 MW
+    备用: U1 R=241.9, U2 R=106.5, U5 R=23.4, U11 R=3.6, U13 R=13.6
+    负荷分配: Bus1=113.1, Bus11=26.4, Bus13=26.4, Bus25=80.0
+Hour 08 (系统负荷=213.0 MW)
+    出力: U1=50.0 MW, U2=64.2 MW, U5=24.0 MW, U8=35.0 MW, U11=19.9 MW, U13=19.9 MW
+    备用: U1 R=250.0, U2 R=115.8, U5 R=26.0, U11 R=10.1, U13 R=20.1
+    负荷分配: Bus1=93.1, Bus11=19.9, Bus13=19.9, Bus25=80.0
+Hour 09 (系统负荷=192.0 MW)
+    出力: U1=50.0 MW, U2=57.7 MW, U5=22.2 MW, U8=31.2 MW, U11=15.4 MW, U13=15.4 MW
+    备用: U1 R=250.0, U2 R=122.3, U5 R=27.8, U8 R=3.8, U11 R=14.6, U13 R=24.6
+    负荷分配: Bus1=161.2, Bus11=15.4, Bus13=15.4
+Hour 10 (系统负荷=161.0 MW)
+    出力: U1=50.0 MW, U2=51.0 MW, U5=20.3 MW, U8=17.1 MW, U11=10.7 MW, U13=12.0 MW
+    备用: U1 R=250.0, U2 R=129.0, U5 R=29.7, U8 R=17.9, U11 R=19.3, U13 R=28.0
+    负荷分配: Bus1=58.3, Bus11=10.7, Bus13=12.0, Bus25=80.0
+Hour 11 (系统负荷=147.0 MW)
+    出力: U1=50.0 MW, U2=46.1 MW, U5=18.9 MW, U8=10.0 MW, U11=10.0 MW, U13=12.0 MW
+    备用: U1 R=250.0, U2 R=133.9, U5 R=31.1, U8 R=25.0, U11 R=20.0, U13 R=28.0
+    负荷分配: Bus2=45.0, Bus11=10.0, Bus13=12.0, Bus19=80.0
+Hour 12 (系统负荷=160.0 MW)
+    出力: U1=50.0 MW, U2=50.7 MW, U5=20.2 MW, U8=16.5 MW, U11=10.5 MW, U13=12.0 MW
+    备用: U1 R=250.0, U2 R=129.3, U5 R=29.8, U8 R=18.5, U11 R=19.5, U13 R=28.0
+    负荷分配: Bus1=57.5, Bus11=10.5, Bus13=12.0, Bus25=80.0
+Hour 13 (系统负荷=170.0 MW)
+    出力: U1=50.0 MW, U2=53.1 MW, U5=20.9 MW, U8=21.6 MW, U11=12.2 MW, U13=12.2 MW
+    备用: U1 R=250.0, U2 R=126.9, U5 R=29.1, U8 R=13.4, U11 R=17.8, U13 R=27.8
+    负荷分配: Bus1=65.6, Bus11=12.2, Bus13=12.2, Bus20=80.0
+Hour 14 (系统负荷=185.0 MW)
+    出力: U1=50.0 MW, U2=56.3 MW, U5=21.8 MW, U8=28.2 MW, U11=14.4 MW, U13=14.4 MW
+    备用: U1 R=250.0, U2 R=123.7, U5 R=28.2, U8 R=6.8, U11 R=15.6, U13 R=25.6
+    负荷分配: Bus1=76.2, Bus11=14.4, Bus13=14.4, Bus25=80.0
+Hour 15 (系统负荷=208.0 MW)
+    出力: U1=50.0 MW, U2=62.3 MW, U5=23.4 MW, U8=35.0 MW, U11=18.6 MW, U13=18.6 MW
+    备用: U1 R=250.0, U2 R=117.7, U5 R=26.6, U11 R=11.4, U13 R=21.4
+    负荷分配: Bus1=90.8, Bus11=18.6, Bus13=18.6, Bus19=80.0
+Hour 16 (系统负荷=232.0 MW)
+    出力: U1=54.6 MW, U2=69.5 MW, U5=25.5 MW, U8=35.0 MW, U11=23.7 MW, U13=23.7 MW
+    备用: U1 R=245.4, U2 R=110.5, U5 R=24.5, U11 R=6.3, U13 R=16.3
+    负荷分配: Bus1=104.6, Bus11=23.7, Bus13=23.7, Bus25=80.0
+Hour 17 (系统负荷=246.0 MW)
+    出力: U1=58.1 MW, U2=73.5 MW, U5=26.6 MW, U8=35.0 MW, U11=26.4 MW, U13=26.4 MW
+    备用: U1 R=241.9, U2 R=106.5, U5 R=23.4, U11 R=3.6, U13 R=13.6
+    负荷分配: Bus1=193.1, Bus11=26.4, Bus13=26.4
+Hour 18 (系统负荷=241.0 MW)
+    出力: U1=56.8 MW, U2=72.1 MW, U5=26.2 MW, U8=35.0 MW, U11=25.5 MW, U13=25.5 MW
+    备用: U1 R=243.2, U2 R=107.9, U5 R=23.8, U11 R=4.5, U13 R=14.5
+    负荷分配: Bus1=190.1, Bus11=25.5, Bus13=25.5
+Hour 19 (系统负荷=236.0 MW)
+    出力: U1=55.6 MW, U2=70.7 MW, U5=25.8 MW, U8=35.0 MW, U11=24.5 MW, U13=24.5 MW
+    备用: U1 R=244.4, U2 R=109.3, U5 R=24.2, U11 R=5.5, U13 R=15.5
+    负荷分配: Bus1=107.1, Bus11=24.5, Bus13=24.5, Bus25=80.0
+Hour 20 (系统负荷=225.0 MW)
+    出力: U1=52.9 MW, U2=67.6 MW, U5=24.9 MW, U8=35.0 MW, U11=22.3 MW, U13=22.3 MW
+    备用: U1 R=247.1, U2 R=112.4, U5 R=25.1, U11 R=7.7, U13 R=17.7
+    负荷分配: Bus1=100.4, Bus11=22.3, Bus13=22.3, Bus25=80.0
+Hour 21 (系统负荷=204.0 MW)
+    出力: U1=50.0 MW, U2=60.8 MW, U5=23.0 MW, U8=35.0 MW, U11=17.6 MW, U13=17.6 MW
+    备用: U1 R=250.0, U2 R=119.2, U5 R=27.0, U11 R=12.4, U13 R=22.4
+    负荷分配: Bus1=88.9, Bus11=17.6, Bus13=17.6, Bus25=80.0
+Hour 22 (系统负荷=182.0 MW)
+    出力: U1=50.0 MW, U2=55.7 MW, U5=21.6 MW, U8=26.8 MW, U11=14.0 MW, U13=14.0 MW
+    备用: U1 R=250.0, U2 R=124.3, U5 R=28.4, U8 R=8.2, U11 R=16.0, U13 R=26.0
+    负荷分配: Bus1=154.1, Bus11=14.0, Bus13=14.0
+Hour 23 (系统负荷=161.0 MW)
+    出力: U1=50.0 MW, U2=51.0 MW, U5=20.3 MW, U8=17.1 MW, U11=10.7 MW, U13=12.0 MW
+    备用: U1 R=250.0, U2 R=129.0, U5 R=29.7, U8 R=17.9, U11 R=19.3, U13 R=28.0
+    负荷分配: Bus1=138.3, Bus11=10.7, Bus13=12.0
+Hour 24 (系统负荷=131.0 MW)
+    出力: U1=50.0 MW, U2=33.6 MW, U5=15.4 MW, U8=10.0 MW, U11=10.0 MW, U13=12.0 MW
+    备用: U1 R=250.0, U2 R=146.4, U5 R=34.6, U8 R=25.0, U11 R=20.0, U13 R=28.0
+    负荷分配: Bus11=10.0, Bus13=12.0, Bus24=109.0
+
+CPU model: AMD Ryzen 7 8845H w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 16 threads   
+
+Optimize a model with 196900 rows, 96768 columns and 420084 nonzeros
+Model fingerprint: 0xac03ce9d
+Model has 144 quadratic objective terms
+Variable types: 96336 continuous, 432 integer (432 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+02]
+  Objective range  [1e+00, 2e+02]
+  QObjective range [2e-02, 1e-01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 7e+02]
+Presolve removed 153640 rows and 54213 columns
+Presolve time: 0.89s
+Presolved: 43262 rows, 42556 columns, 195361 nonzeros
+Presolved model has 144 quadratic objective terms
+Variable types: 42170 continuous, 386 integer (386 binary)
+
+Root simplex log...
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+   69380    5.6000000e+02   9.283780e+04   0.000000e+00      5s
+   89294    1.5128092e+04   0.000000e+00   0.000000e+00      8s
+
+Root relaxation: objective 1.512809e+04, 89294 iterations, 7.34 seconds (3.72 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time    
+
+     0     0 15128.0918    0   23          - 15128.0918      -     -    8s      
+H    0     0                    15129.082382 15128.0918  0.01%     -    9s
+
+Explored 1 nodes (89294 simplex iterations) in 9.61 seconds (5.70 work units)
+Thread count was 16 (of 16 available processors)
+
+Solution count 1: 15129.1
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.512908238245e+04, best bound 1.512809178786e+04, gap 0.0065%   
+最优成本: 15,129.08
