@@ -478,38 +478,49 @@ def build_uc_model(
     return model, vars_dict
 
 
+def solve_and_report(
+    model: gp.Model, vars_dict: Dict[str, gp.tupledict], loads: List[float]
+) -> None:
+    model.computeIIS()
+    model.write("iis.ilp")
 
+    # model.optimize()
+    # if model.Status in (GRB.INFEASIBLE, GRB.INF_OR_UNBD):
+    #     print("原模型不可行，尝试 Feasibility Relaxation ……")
+    #     relax_value = model.feasRelaxS(
+    #         relaxobjtype=0, minrelax=True, vrelax=False, crelax=True
+    #     )
+    #     print(f"FeasRelax 松弛目标值: {relax_value:.4f}")
+    #     model.optimize()
+    #     if model.Status == GRB.OPTIMAL:
+    #         print(f"FeasRelax 模型目标值: {model.objVal:.4f}")
+    #         model.write("feas_relax.lp")
+    #     else:
+    #         print(f"FeasRelax 求解失败，状态: {model.Status}")
+    #     return
+    # if model.Status != GRB.OPTIMAL:
+    #     print(f"模型状态: {model.Status}")
+    #     return
 
-def solve_and_report(model: gp.Model, vars_dict: Dict[str, gp.tupledict], loads: List[float]) -> None:
-    model.optimize()
-    if model.Status in (GRB.INFEASIBLE, GRB.INF_OR_UNBD):
-        print('????????? Feasibility Relaxation ??')
-        relax_value, relax_model = model.feasRelaxS(relaxobjtype=0, minrelax=True, vrelax=False, crelax=True)
-        print(f'FeasRelax ?????: {relax_value:.4f}')
-        relax_model.optimize()
-        if relax_model.Status == GRB.OPTIMAL:
-            print(f'FeasRelax ?????: {relax_model.objVal:.4f}')
-            relax_model.write('feas_relax.ilp')
-        else:
-            print(f'FeasRelax ???????: {relax_model.Status}')
-        return
-    if model.Status != GRB.OPTIMAL:
-        print(f'????: {model.Status}')
-        return
+    # 展示结果
+    # u = vars_dict["u"]
+    # p = vars_dict["p"]
+    # r = vars_dict["r"]
+    # units = sorted({idx[0] for idx in u.keys()})
 
-    u = vars_dict['u']
-    p = vars_dict['p']
-    r = vars_dict['r']
-    units = sorted({idx[0] for idx in u.keys()})
+    # print(f"最优成本: {model.objVal:,.2f}")
+    # for t in range(len(loads)):
+    #     committed = [
+    #         f"U{unit}={p[unit, t].X:.1f} MW" for unit in units if u[unit, t].X > 0.5
+    #     ]
+    #     committed_str = ", ".join(committed) if committed else "无机组出力"
+    #     reserve_str = ", ".join(
+    #         [f"U{unit} R={r[unit, t].X:.1f}" for unit in units if r[unit, t].X > 1e-3]
+    #     )
+    #     print(f"Hour {t + 1:02d} (负荷={loads[t]:.1f} MW): {committed_str}")
+    #     if reserve_str:
+    #         print(f"    备用: {reserve_str}")
 
-    print(f'????: {model.objVal:,.2f}')
-    for t in range(len(loads)):
-        committed = [f'U{unit}={p[unit, t].X:.1f} MW' for unit in units if u[unit, t].X > 0.5]
-        committed_str = ', '.join(committed) if committed else '?????'
-        reserve_str = ', '.join([f'U{unit} R={r[unit, t].X:.1f}' for unit in units if r[unit, t].X > 1e-3])
-        print(f'Hour {t + 1:02d} (??={loads[t]:.1f} MW): {committed_str}')
-        if reserve_str:
-            print(f'    ??: {reserve_str}')
 
 def main() -> None:
     generators, branches, bus_loads, total_loads, h_min, reserve_req, ref_bus = (
