@@ -14,21 +14,16 @@
 \usepackage{url}
 
 %%%%%%%%%%%%填写相关信息%%%%%%%%%%%%%%%%%%%%%%%%%%
-\tihao{A}                            %选题
-\baominghao{apmcm253XXXXX}                 %参赛编号
+\tihao{D}                            %选题
+\baominghao{apmcm25300000}                 %参赛编号
 \begin{document}
 
 \pagestyle{frontmatterstyle}
 
 \begin{abstract}
-\verb|apmcmthesis| \LaTeX{} template is designed by \url{https://www.latexstudio.net} for \url{http://www.apmcm.org}. The template is designed to let everyone focus on the content writing of the paper, without spending too much effort on the customization and adjustment of the format.
+基于赛题提供的 30 节点系统数据与现有求解输出，本文梳理了问题 1（经典机组组合）与问题 2（含潮流与备用的安全约束 UC）的建模、求解与结果阐释思路。我们使用 Python 脚本自动读取 \texttt{output} 目录下的变量表，生成机组出力、备用裕度及柔性负荷分配的可视化图像，并将关键结论嵌入模板正文，便于直接撰写参赛论文。
 
-Note that users need to have some experience with \LaTeX{}, at least some of the features of common macro packages, such as references, math formulas, image usage, list environment, etc. Templates have added commonly used macros. Package, no additional user added.
-
-This template is located on   \url{https://github.com/latexstudio/APMCMThesis}. You can update files from the repository.
-
-
-\keywords{Keywords1\quad  Keywords2\quad   Keywords3}
+\keywords{机组组合\quad 安全约束\quad 旋转备用\quad DC 潮流}
 \end{abstract}
 
 
@@ -41,152 +36,127 @@ This template is located on   \url{https://github.com/latexstudio/APMCMThesis}. 
 \newpage
 \pagestyle{mainmatterstyle}
 \setcounter{page}{1}
-\section{Introduction}
-In order to indicate the origin of problems, the following background is worth mentioning.
-\subsection{}
+\section{引言}
+问题 D 要求在 30 节点系统内完成 24 小时机组组合与安全校核。赛题数据包含机组出力上下限、启停成本、爬坡、惯量系数（Table 1/2/5）、支路阻抗与潮流上限（Table 3）以及系统负荷曲线（Table 4）。\texttt{output} 目录已经给出两组求解结果：问题 1 的经典 UC 解与问题 2 的含潮流、备用及 N--1 约束解。本文根据这些成果整理出完整的论文叙述结构，并补充可视化图像以支撑论证。
 
-
-\subsection{}
-
-
-
-\subsection{}
-
-
-\section{The Description of the Problem}
-\subsection{How do we approximate the whole course of ?}
-
+\section{问题描述}
+\subsection{研究对象}
 \begin{itemize}
-  \item
-  \item
-  \item
+  \item \textbf{问题 1：经典 UC}。忽略电网拓扑，仅在系统层面平衡负荷并最小化燃料成本与启停成本。
+  \item \textbf{问题 2：安全约束 UC}。在问题 1 的基础上引入 DC 潮流、母线柔性负荷分配、旋转备用与惯量要求，并对每台机组、每条线路进行 N--1 备用校核。
 \end{itemize}
 
-
-\subsection{How do we define the optimal configuration?}
-1) From the perspective of      :\par
-2) From the perspective of the      :\par
-3) Compromise:
-
-\subsection{The local optimization and the overall optimization}
-
-
+\subsection{目标与判据}
+两类模型的目标函数均为 24 小时累积成本最小化（燃料二次函数 + 启停成本）。评估指标包括：
 \begin{itemize}
-  \item
-  \item
-  \item Virtually:
+  \item 日总成本（输出日志中最优值均为 15,129.08 美元）。
+  \item 出力曲线与负荷曲线的吻合度。
+  \item 潮流与柔性负荷的可行性，以及备用/惯量裕度。
 \end{itemize}
 
-
-\subsection{The differences in weights and sizes of}
-
-
-\subsection{What if there is no data available?}
-
-
-
-
-
-
-\section{Models}
-\subsection{Basic Model}
-
-
-\subsubsection{Terms, Definitions and Symbols}
-The signs and definitions are mostly generated from queuing theory.
-
-
-\subsubsection{Assumptions}
-
-
-\subsubsection{The Foundation of Model}
-1) The utility function
-
+\section{模型与求解方法}
+\subsection{经典机组组合模型（问题 1）}
+模型将每台机组的出力 \(p_{i,t}\)、开机状态 \(u_{i,t}\)、启停决策 \(y_{i,t}, z_{i,t}\) 建模为混合整数变量，目标函数为燃料成本二次项与启停成本之和。约束包含：
 \begin{itemize}
-\item The cost of       :
-\item The loss of       :
-\item The weight of each aspect:
-\item Compromise:
+  \item 系统功率平衡：\(\sum_i p_{i,t} = L_t\)。
+  \item 出力上下界、爬坡率、最小开机/停机时间及启停逻辑（\(y+z\le 1\)）。
+  \item 初始状态继承：根据表中给定的已开机/停机时长锁定前若干时段的状态。
+\end{itemize}
+Gurobi 求解器在 0.03s 内获得全局最优解，日总成本 15,129.08。
+
+\subsection{含潮流与备用的安全约束 UC（问题 2）}
+在上述模型上增加以下要素：
+\begin{itemize}
+  \item \textbf{DC 潮流与母线负荷分配}：以参考母线为零相角，\(f_\ell = (\theta_{fr}-\theta_{to})/x_\ell\)，并限制支路潮流不超过 \(F^{\max}_\ell\)。柔性负荷变量 \(d_{b,t}\ge0\) 在各母线间分配，总和等于系统负荷。
+  \item \textbf{旋转备用与惯量}：每台机组备用 \(r_{i,t}\) 不超过可用余量，惯量约束 \(\sum_i H_i u_{i,t}\ge H_{\min}\)。输出结果显示备用总量可视化（图 \ref{fig:reserve}）。
+  \item \textbf{N--1 校核}：为每个机组停运场景 \(p^{cg}_{i,g,t}\) 与线路停运场景 \(p^{cl}_{i,\ell,t}\) 新建潮流平衡与备用收缩变量，保证在任一单元件失效时仍可由备用补偿且不越线。
+\end{itemize}
+求解耗时约 9.6s，最优成本同样为 15,129.08，表明安全约束未显著抬升费用。
+
+\section{求解结果与验证}
+\subsection{问题 1：出力曲线}
+图 \ref{fig:q1_dispatch} 给出了经典 UC 的日内分解，机组 \#1/\#2 在全日承担基荷，机组 \#5、\#8 以及小机组 \#11/\#13 在负荷高峰阶段逐步爬坡。叠加的黑线为 Table 4 提供的系统负荷曲线，两者吻合良好，总成本与输出日志一致（15,129.08 美元）。
+
+\begin{figure}[htbp]
+  \centering
+  \IfFileExists{figures/q1_dispatch.png}{%
+    \includegraphics[width=0.9\textwidth]{figures/q1_dispatch.png}%
+  }{%
+    \fbox{\begin{minipage}{0.9\textwidth}\centering
+      figures/q1_dispatch.png 未生成\\
+      运行 \texttt{python src/codex/report_builder.py} 以复现图像
+    \end{minipage}}%
+  }
+  \caption{问题 1 经典 UC 的各机组日内出力及负荷对比}
+  \label{fig:q1_dispatch}
+\end{figure}
+
+\subsection{问题 2：安全约束下的调度与备用}
+\begin{figure}[htbp]
+  \centering
+  \IfFileExists{figures/q2_dispatch.png}{%
+    \includegraphics[width=0.9\textwidth]{figures/q2_dispatch.png}%
+  }{%
+    \fbox{\begin{minipage}{0.9\textwidth}\centering
+      figures/q2_dispatch.png 未生成\\
+      运行 \texttt{python src/codex/report_builder.py}
+    \end{minipage}}%
+  }
+  \caption{问题 2 含潮流与备用的机组出力曲线}
+  \label{fig:q2_dispatch}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \IfFileExists{figures/q2_bus_load.png}{%
+    \includegraphics[width=0.9\textwidth]{figures/q2_bus_load.png}%
+  }{%
+    \fbox{\begin{minipage}{0.9\textwidth}\centering
+      figures/q2_bus_load.png 未生成\\
+      运行 \texttt{python src/codex/report_builder.py}
+    \end{minipage}}%
+  }
+  \caption{柔性负荷在 30 节点系统中的分配（越深颜色代表分配越大）}
+  \label{fig:q2_bus_load}
+\end{figure}
+
+图 \ref{fig:q2_dispatch} 与图 \ref{fig:q2_bus_load} 表明，调度结果仍由基荷机组承担主力，柔性负荷在少数母线集中分配以满足潮流约束（如 bus1、bus25 等）。备用分析如图 \ref{fig:reserve}，可见总备用量在大部分时段低于题目提出的 600 MW 需求，解释了输出解中“旋转备用需求”约束被放宽的情况，后续完善模型时需恢复系统级约束。尽管如此，N--1 潮流与备用分配均保持可行，日成本维持在 15,129.08。
+
+\begin{figure}[htbp]
+  \centering
+  \IfFileExists{figures/q2_reserve.png}{%
+    \includegraphics[width=0.9\textwidth]{figures/q2_reserve.png}%
+  }{%
+    \fbox{\begin{minipage}{0.9\textwidth}\centering
+      figures/q2_reserve.png 未生成\\
+      运行 \texttt{python src/codex/report_builder.py}
+    \end{minipage}}%
+  }
+  \caption{机组可用备用总量与 600 MW 需求的对比}
+  \label{fig:reserve}
+\end{figure}
+
+\section{结论与展望}
+\subsection{主要结论}
+\begin{itemize}
+  \item 已有输出展示了可行的机组组合与潮流分配，日成本 15,129.08，美观的出力曲线与负荷吻合度为撰写结果分析提供了依据。
+  \item N--1 校核与柔性负荷分配在现有求解中保持可行，但系统级旋转备用需求尚未强制满足，应在后续版本补全。
+  \item 所生成的可视化图像（图 \ref{fig:q1_dispatch}--\ref{fig:reserve}）可直接嵌入论文，支撑对调度规律、备用裕度与潮流分配的论述。
 \end{itemize}
 
+\subsection{方法总结}
+本文基于混合整数规划与 DC 潮流线性化，结合 Gurobi 求解器快速获得全局最优解；通过 Python 脚本自动化导出变量与图像，可复用性强。
 
-
-
-
-3) The overall optimization and the local optimization
-
+\subsection{后续改进方向}
 \begin{itemize}
-\item The overall optimization:
-\item The local optimization:
-\item The optimal number of        :
+  \item 恢复并调优系统级旋转备用约束，验证成本与可行域变化；
+  \item 尝试引入惯量成本或动态安全因子，以便与频率约束更紧耦合；
+  \item 对柔性负荷增加上下限或经济性权重，提升物理合理性。
 \end{itemize}
-
-
-
-\subsubsection{Solution and Result}
-1) The solution of the integer programming:
-2) Results:
-\subsubsection{Analysis of the Result}
-\begin{itemize}
-\item Local optimization and overall optimization:
-\item Sensitivity: The result is quite sensitive to the change of the three parameters
-\item
-\item Trend:
-\item Comparison:
-\end{itemize}
-\subsubsection{Strength and Weakness}
-
-\begin{description}
-\item[Strength:] The Improved Model aims to make up for the neglect of         . The result seems to declare that this model is more reasonable than the Basic Model and much more effective than the existing design.
-\item[Weakness:] Thus the model is still an approximate on a large scale. This has doomed to limit the applications of it.
-\end{description}
-
-\section{Conclusions}
-
-\subsection{Conclusions of the problem}
-\begin{itemize}
-\item 	
-\item
-\item
-\item
-\end{itemize}	
-\subsection{Methods used in our models}
-\begin{itemize}
-\item 	
-\item
-\item
-\item
-\end{itemize}
-\subsection{Applications of our models}
-\begin{itemize}
-\item 	
-\item
-\item
-\item
-\end{itemize}
-\section{Future Work}
-\subsection{Another model}
-\subsubsection{The limitations of queuing theory}
-
-
-
-
-\subsubsection{}
-
-
-\subsubsection{}
-
-
-
-\subsubsection{}
-
-
-
-
 
 %参考文献
 \begin{thebibliography}{9}%宽度9
-\bibitem{1} Author, Title, Place of Publication: Press, Year of publication.
+\bibitem{1} APMCM Committee, ``Problem D Data Sheet,'' 2025.
 
 \end{thebibliography}
 
@@ -194,49 +164,10 @@ The signs and definitions are mostly generated from queuing theory.
 %附录
 
 \section{Appendix}
-\begin{lstlisting}[language=matlab,caption={The matlab Source code of Algorithm}]
-kk=2;[mdd,ndd]=size(dd);
-while ~isempty(V)
-[tmpd,j]=min(W(i,V));tmpj=V(j);
-for k=2:ndd
-[tmp1,jj]=min(dd(1,k)+W(dd(2,k),V));
-tmp2=V(jj);tt(k-1,:)=[tmp1,tmp2,jj];
-end
-tmp=[tmpd,tmpj,j;tt];[tmp3,tmp4]=min(tmp(:,1));
-if tmp3==tmpd, ss(1:2,kk)=[i;tmp(tmp4,2)];
-else,tmp5=find(ss(:,tmp4)~=0);tmp6=length(tmp5);
-if dd(2,tmp4)==ss(tmp6,tmp4)
-ss(1:tmp6+1,kk)=[ss(tmp5,tmp4);tmp(tmp4,2)];
-else, ss(1:3,kk)=[i;dd(2,tmp4);tmp(tmp4,2)];
-end;end
-dd=[dd,[tmp3;tmp(tmp4,2)]];V(tmp(tmp4,3))=[];
-[mdd,ndd]=size(dd);kk=kk+1;
-end; S=ss; D=dd(1,:);
- \end{lstlisting}
-\begin{lstlisting}[language=c,caption={The lingo source code}]
-kk=2;
-[mdd,ndd]=size(dd);
-while ~isempty(V)
-    [tmpd,j]=min(W(i,V));tmpj=V(j);
-for k=2:ndd
-    [tmp1,jj]=min(dd(1,k)+W(dd(2,k),V));
-    tmp2=V(jj);tt(k-1,:)=[tmp1,tmp2,jj];
-end
-    tmp=[tmpd,tmpj,j;tt];[tmp3,tmp4]=min(tmp(:,1));
-if tmp3==tmpd, ss(1:2,kk)=[i;tmp(tmp4,2)];
-else,tmp5=find(ss(:,tmp4)~=0);tmp6=length(tmp5);
-if dd(2,tmp4)==ss(tmp6,tmp4)
-    ss(1:tmp6+1,kk)=[ss(tmp5,tmp4);tmp(tmp4,2)];
-else, ss(1:3,kk)=[i;dd(2,tmp4);tmp(tmp4,2)];
-end;
-end
-    dd=[dd,[tmp3;tmp(tmp4,2)]];V(tmp(tmp4,3))=[];
-    [mdd,ndd]=size(dd);
-    kk=kk+1;
-end;
-S=ss;
-D=dd(1,:);
- \end{lstlisting}
-
-
-\end{document} 
+\begin{lstlisting}[language=python,caption={自动生成图像的脚本入口}]
+# 运行命令：python src/codex/report_builder.py
+# 脚本会读取 output/*/solution_variables.xlsx，
+# 并在 Paper/figures/ 下生成调度与备用图像。
+# 生成的 PNG/summary.txt 已加入 .gitignore，默认不入库。
+\end{lstlisting}
+\end{document}
