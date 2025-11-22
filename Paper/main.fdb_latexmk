@@ -1,8 +1,8 @@
 # Fdb version 4
-["pdflatex"] 1763620974.16626 "c:/Users/oft/Documents/workspace/Paper/main.tex" "main.pdf" "main" 1763620975.40439 0
+["pdflatex"] 1763784094.4841 "c:/Users/oft/Documents/workspace/Paper/main.tex" "main.pdf" "main" 1763784095.7786 0
   "apmcmthesis.cfg" 1763618776 3135 0a0756cee74f785872b894ae4e85c566 ""
   "apmcmthesis.cls" 1763618776 13415 41f2f271e9a04b028112181c0e45ab2b ""
-  "c:/Users/oft/Documents/workspace/Paper/main.tex" 1763620972 5623 75f37b4f33d179ce873b09a82b3ed5a3 ""
+  "c:/Users/oft/Documents/workspace/Paper/main.tex" 1763784089 5285 1851d74933be60f983d94343ed9e763c ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc" 1756153888 2083 60e36f8eac802fcaf19eabe2633b406e ""
   "c:/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc" 1756155999 3124 3813fd4c981d99822890a2861b0d274c ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1756151538 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -150,9 +150,9 @@
   "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1756157286 5574045 c1864b6d576eca8ff04839113c3d8c41 ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1756157532 3605798 a2a1471d6f1aa75114604eecfef4adfe ""
   "c:/texlive/2025/texmf.cnf" 1756157268 713 e69b156964470283e0530f5060668171 ""
-  "main.aux" 1763620975 3940 3963442b51404a115c673373712f7838 "pdflatex"
-  "main.tex" 1763620972 5623 75f37b4f33d179ce873b09a82b3ed5a3 ""
-  "main.toc" 1763620975 2284 d2d203dd7b44c758f5e025fea3c683b6 "pdflatex"
+  "main.aux" 1763784095 3126 485581b930f47b400f306895ffcc57dc "pdflatex"
+  "main.tex" 1763784089 5285 1851d74933be60f983d94343ed9e763c ""
+  "main.toc" 1763784095 1716 d8e24c32d49a8c8a35c71131c0865593 "pdflatex"
   (generated)
   "main.aux"
   "main.log"
