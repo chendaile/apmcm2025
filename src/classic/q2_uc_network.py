@@ -22,9 +22,9 @@ import gurobipy as gp
 import pandas as pd
 from gurobipy import GRB
 
-BASE_DIR = Path(__file__).resolve().parents[1]
+BASE_DIR = Path(__file__).resolve().parents[2]
 WORKBOOK_PATH = BASE_DIR / "QuestionD" / "Table.xlsx"
-OUTPUT_DIR = BASE_DIR / "output"
+OUTPUT_DIR = BASE_DIR / "output/Q2"
 RESERVE_REQUIREMENT = 600.0
 
 
@@ -356,11 +356,11 @@ def build_uc_model(
     #         name=f"sys_reserve_{t+1}",
     #     )
 
-    for t in periods:
-        model.addConstr(
-            gp.quicksum(generators[i].inertia * u[i, t] for i in units) >= h_min,
-            name=f"inertia_{t+1}",
-        )
+    # for t in periods:
+    #     model.addConstr(
+    #         gp.quicksum(generators[i].inertia * u[i, t] for i in units) >= h_min,
+    #         name=f"inertia_{t+1}",
+    #     )
 
     outage_units = units
     pcg = model.addVars(units, outage_units, periods, lb=0.0, name="p_cg")

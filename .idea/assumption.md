@@ -6,6 +6,6 @@
 
 忽略了表格三的 r 和 b
 
-第二题中每个 bus 的 load demand 为变量
+由于题目并没有制定每个 bus 的 load demand,因此我们认为第二题中每个 bus 的 load demand 为变量
 
 由于 hmin 和 h 关系不明确,优化过程不考虑 inertia

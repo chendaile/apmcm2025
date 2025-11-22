@@ -29,7 +29,7 @@ import gurobipy as gp
 import pandas as pd
 from gurobipy import GRB
 
-BASE_DIR = Path(__file__).resolve().parents[1]
+BASE_DIR = Path(__file__).resolve().parents[2]
 WORKBOOK_PATH = BASE_DIR / "QuestionD" / "Table.xlsx"
 OUTPUT_DIR = BASE_DIR / "output" / "Q1"
 

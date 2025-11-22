@@ -1,3 +1,41 @@
+Set parameter LicenseID to value 2737966
+Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (win64 - Windows 11.0 (26100.2))
+
+CPU model: AMD Ryzen 7 8845H w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
+Thread count: 8 physical cores, 16 logical processors, using up to 16 threads
+
+Optimize a model with 1156 rows, 576 columns and 3108 nonzeros
+Model fingerprint: 0x52d5748c
+Model has 144 quadratic objective terms
+Variable types: 144 continuous, 432 integer (432 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 3e+02]
+  Objective range  [1e+00, 2e+02]
+  QObjective range [2e-02, 1e-01]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 3e+02]
+Presolve removed 306 rows and 47 columns
+Presolve time: 0.02s
+Presolved: 1046 rows, 627 columns, 3349 nonzeros
+Presolved model has 144 quadratic objective terms
+Variable types: 242 continuous, 385 integer (385 binary)
+Found heuristic solution: objective 15350.141866
+Found heuristic solution: objective 15129.082382
+
+Root relaxation: interrupted, 967 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0          -    0      15129.0824 15127.7191  0.01%     -    0s
+
+Explored 1 nodes (967 simplex iterations) in 0.03 seconds (0.03 work units)
+Thread count was 16 (of 16 available processors)
+
+Solution count 2: 15129.1 15350.1 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.512908238245e+04, best bound 1.512771909350e+04, gap 0.0090%
 最优成本: 15,129.08
 Hour 01 (负荷=166.0 MW): U1=50.0 MW, U2=52.2 MW, U5=20.6 MW, U8=19.6 MW, U11=11.5 MW, U13=12.0 MW
     状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
@@ -47,40 +85,3 @@ Hour 23 (负荷=161.0 MW): U1=50.0 MW, U2=51.0 MW, U5=20.3 MW, U8=17.1 MW, U11=1
     状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
 Hour 24 (负荷=131.0 MW): U1=50.0 MW, U2=33.6 MW, U5=15.4 MW, U8=10.0 MW, U11=10.0 MW, U13=12.0 MW
     状态: U1(u=1, y=0, z=0), U2(u=1, y=0, z=0), U5(u=1, y=0, z=0), U8(u=1, y=0, z=0), U11(u=1, y=0, z=0), U13(u=1, y=0, z=0)
-
-CPU model: AMD Ryzen 7 8845H w/ Radeon 780M Graphics, instruction set [SSE2|AVX|AVX2|AVX512]
-Thread count: 8 physical cores, 16 logical processors, using up to 16 threads
-
-Optimize a model with 1156 rows, 576 columns and 3108 nonzeros
-Model fingerprint: 0x52d5748c
-Model has 144 quadratic objective terms
-Variable types: 144 continuous, 432 integer (432 binary)
-Coefficient statistics:
-  Matrix range     [1e+00, 3e+02]
-  Objective range  [1e+00, 2e+02]
-  QObjective range [2e-02, 1e-01]
-  Bounds range     [1e+00, 1e+00]
-  RHS range        [1e+00, 3e+02]
-Presolve removed 306 rows and 47 columns
-Presolve time: 0.02s
-Presolved: 1046 rows, 627 columns, 3349 nonzeros
-Presolved model has 144 quadratic objective terms
-Variable types: 242 continuous, 385 integer (385 binary)
-Found heuristic solution: objective 15350.141866
-Found heuristic solution: objective 15129.082382
-
-Root relaxation: interrupted, 967 iterations, 0.00 seconds (0.00 work units)
-
-    Nodes    |    Current Node    |     Objective Bounds      |     Work
- Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
-
-     0     0          -    0      15129.0824 15127.7191  0.01%     -    0s
-
-Explored 1 nodes (967 simplex iterations) in 0.03 seconds (0.03 work units)
-Thread count was 16 (of 16 available processors)
-
-Solution count 2: 15129.1 15350.1 
-
-Optimal solution found (tolerance 1.00e-04)
-Best objective 1.512908238245e+04, best bound 1.512771909350e+04, gap 0.0090%
-最优成本: 15,129.08
