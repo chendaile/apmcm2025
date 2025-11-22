@@ -2,45 +2,108 @@
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1\,.\,1}Problem Background}{1}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1\,.\,2}Problem Restatement}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1\,.\,3}Problem Analysis}{1}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1\,.\,3}Problem Analysis}{2}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Assumptions}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Notations}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Model Formulation}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4\,.\,1}Problem 1: Classical Unit Commitment Model}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4\,.\,1\,.\,1}Objective Function}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4\,.\,1\,.\,2}Constraints}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4\,.\,2}Problem 2: UC with Network and Security Constraints}{3}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4\,.\,2\,.\,1}Extended Objective Function}{3}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Mathematical Notation Summary}}{4}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4\,.\,2\,.\,2}Additional Constraints}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4\,.\,3}Problem 3: QUBO Transformation}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4\,.\,3\,.\,1}QUBO Formulation}{5}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4\,.\,3\,.\,2}Constraint Handling}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4\,.\,3\,.\,3}Variable Encoding}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4\,.\,3\,.\,4}Kaiwu SDK Implementation}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results and Analysis}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5\,.\,1}Problem 1: Classical UC Results}{6}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5\,.\,2}Problem 2: Network-Constrained UC Results}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5\,.\,3}Problem 3: QUBO Transformation Results}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5\,.\,4}Comparative Analysis}{7}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Strengths and Weaknesses}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6\,.\,1}Strengths of Our Approach}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6\,.\,2}Weaknesses and Limitations}{8}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6\,.\,3}Areas for Improvement}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Key Results Summary}{3}{}\protected@file@percent }
+\gdef \LT@i {\LT@entry 
+    {1}{74.28644pt}\LT@entry 
+    {1}{188.407pt}\LT@entry 
+    {1}{68.59596pt}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Notations}{4}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Mathematical notation summary}}{4}{}\protected@file@percent }
+\newlabel{tab:notation}{{1}{4}{Notations}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Problem 1: Classical Unit Commitment}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5\,.\,1}Model description}{6}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,1}Objective}{6}{}\protected@file@percent }
+\newlabel{eq:q1_obj}{{1}{6}{Objective}{equation.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,2}Power balance and capacity}{6}{}\protected@file@percent }
+\newlabel{eq:q1_balance}{{2}{6}{Power balance and capacity}{equation.2}{}}
+\newlabel{eq:q1_capacity}{{3}{6}{Power balance and capacity}{equation.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,3}Logic and minimum-time constraints}{6}{}\protected@file@percent }
+\newlabel{eq:q1_logic}{{4}{6}{Logic and minimum-time constraints}{equation.4}{}}
+\newlabel{eq:q1_mutual}{{5}{6}{Logic and minimum-time constraints}{equation.5}{}}
+\newlabel{eq:q1_up}{{6}{6}{Logic and minimum-time constraints}{equation.6}{}}
+\newlabel{eq:q1_down}{{7}{6}{Logic and minimum-time constraints}{equation.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,4}Ramp rate}{7}{}\protected@file@percent }
+\newlabel{eq:q1_rampup}{{8}{7}{Ramp rate}{equation.8}{}}
+\newlabel{eq:q1_rampdown}{{9}{7}{Ramp rate}{equation.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5\,.\,2}Solution workflow}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5\,.\,3}Solver performance}{7}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5\,.\,4}Dispatch analysis}{7}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Problem~1 solver statistics}}{8}{}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:q1_meta}{{2}{8}{Solver performance}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Representative classical dispatch (MW)}}{8}{}\protected@file@percent }
+\newlabel{tab:q1_dispatch}{{3}{8}{Dispatch analysis}{table.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Problem 2: Network and Security Constrained UC}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6\,.\,1}Model extensions}{8}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6\,.\,1\,.\,1}Flexible load modeling}{8}{}\protected@file@percent }
+\newlabel{eq:q2_flex_nonneg}{{10}{8}{Flexible load modeling}{equation.10}{}}
+\newlabel{eq:q2_flex_balance}{{11}{8}{Flexible load modeling}{equation.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Problem~1 unit output heatmap; darker colors denote higher output and reveal the base-load pattern.}}{9}{}\protected@file@percent }
+\newlabel{fig:q1_heat}{{1}{9}{Dispatch analysis}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6\,.\,1\,.\,2}DC power flow}{9}{}\protected@file@percent }
+\newlabel{eq:q2_bus_balance}{{12}{9}{DC power flow}{equation.12}{}}
+\newlabel{eq:q2_dc_flow}{{13}{9}{DC power flow}{equation.13}{}}
+\newlabel{eq:q2_flow_limit}{{14}{9}{DC power flow}{equation.14}{}}
+\newlabel{eq:q2_ref_bus}{{15}{9}{DC power flow}{equation.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Stacked generation vs. demand for Problem~1 showing perfect tracking of the load curve.}}{10}{}\protected@file@percent }
+\newlabel{fig:q1_stack}{{2}{10}{Dispatch analysis}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6\,.\,1\,.\,3}Spinning reserve and response}{10}{}\protected@file@percent }
+\newlabel{eq:q2_unit_reserve}{{16}{10}{Spinning reserve and response}{equation.16}{}}
+\newlabel{eq:q2_system_reserve}{{17}{10}{Spinning reserve and response}{equation.17}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {6\,.\,1\,.\,4}N--1 contingencies}{10}{}\protected@file@percent }
+\newlabel{eq:q2_gen_rel}{{18}{10}{N--1 contingencies}{equation.18}{}}
+\newlabel{eq:q2_gen_zero}{{19}{10}{N--1 contingencies}{equation.19}{}}
+\newlabel{eq:q2_gen_range}{{20}{10}{N--1 contingencies}{equation.20}{}}
+\newlabel{eq:q2_line_rel}{{21}{10}{N--1 contingencies}{equation.21}{}}
+\newlabel{eq:q2_line_zero}{{22}{10}{N--1 contingencies}{equation.22}{}}
+\newlabel{eq:q2_line_range}{{23}{10}{N--1 contingencies}{equation.23}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6\,.\,2}Solution workflow}{11}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6\,.\,3}Results and analysis}{11}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Problem~2 solver statistics}}{11}{}\protected@file@percent }
+\newlabel{tab:q2_meta}{{4}{11}{Results and analysis}{table.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Bus-level load allocation heatmap for Problem~2.}}{12}{}\protected@file@percent }
+\newlabel{fig:q2_bus}{{3}{12}{Results and analysis}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Line-flow heatmap indicating direction reversals on main corridors.}}{12}{}\protected@file@percent }
+\newlabel{fig:q2_flow}{{4}{12}{Results and analysis}{figure.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Problem 3: QUBO Transformation and Quantum Solution}{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7\,.\,1}Binary encoding and penalties}{12}{}\protected@file@percent }
+\newlabel{eq:q3_encoding}{{24}{12}{Binary encoding and penalties}{equation.24}{}}
+\newlabel{eq:q3_qubo}{{25}{12}{Binary encoding and penalties}{equation.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces $\Delta $flow patterns under N--1 line outages; deep colors show substitute corridors.}}{13}{}\protected@file@percent }
+\newlabel{fig:q2_flow_outage}{{5}{13}{Results and analysis}{figure.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Generator redispatch required after each line outage, emphasizing the burden on U1 and U2.}}{13}{}\protected@file@percent }
+\newlabel{fig:q2_flow_outage_gen}{{6}{13}{Results and analysis}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7\,.\,2}Kaiwu workflow}{13}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Stacked outputs comparison: Q1 (top) vs. Q2 (bottom) showing non-smooth dispatch once network limits apply.}}{14}{}\protected@file@percent }
+\newlabel{fig:q2_load}{{7}{14}{Results and analysis}{figure.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Unit-level spinning reserve demonstrating that U1 and U2 deliver most of the 600 MW requirement.}}{14}{}\protected@file@percent }
+\newlabel{fig:q2_reserve}{{8}{14}{Results and analysis}{figure.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7\,.\,3}Result comparison}{14}{}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Classical vs. QUBO results}}{15}{}\protected@file@percent }
+\newlabel{tab:q3_compare}{{5}{15}{Result comparison}{table.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Comparison of classical (solid) and QUBO (dashed) dispatch illustrating the quantum solver's jumps.}}{15}{}\protected@file@percent }
+\newlabel{fig:q3_compare}{{9}{15}{Result comparison}{figure.9}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Problem 4: Scale Reduction and Feasibility}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8\,.\,1}Reduction strategy}{16}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8\,.\,2}Results}{16}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Hamiltonian trajectory for Problem~4, showing major drops after slack consolidation and bit trimming.}}{16}{}\protected@file@percent }
+\newlabel{fig:q4_hamiltonian}{{10}{16}{Results}{figure.10}{}}
 \bibcite{1}{1}
-\@writefile{toc}{\contentsline {section}{\numberline {7}References}{9}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}Appendix}{10}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8\,.\,1}Key Implementation Code Snippets}{10}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8\,.\,1\,.\,1}Classical UC Model Implementation}{10}{}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Gurobi Implementation for Classical UC}}{10}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {8\,.\,1\,.\,2}QUBO Transformation Code}{10}{}\protected@file@percent }
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces QUBO Transformation for UC Problem}}{10}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8\,.\,2}Key Results Summary}{11}{}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Summary of Optimization Results}}{11}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8\,.\,3}Problem Reduction Strategy}{11}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {8\,.\,4}Additional Figures and Data}{12}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Strengths and Weaknesses}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9\,.\,1}Strengths of Our Approach}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9\,.\,2}Weaknesses and Limitations}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9\,.\,3}Areas for Improvement}{17}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}References}{18}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Appendix}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11\,.\,1}Key Implementation Code Snippets}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {11\,.\,1\,.\,1}Classical UC Model Implementation}{19}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}{\ignorespaces Gurobi Implementation for Classical UC}}{19}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {11\,.\,1\,.\,2}QUBO Transformation Code}{20}{}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}{\ignorespaces QUBO Transformation for UC Problem}}{20}{}\protected@file@percent }
 \ttl@finishall
-\newlabel{LastPage}{{8\protect \,.\protect \,4}{12}{Additional Figures and Data}{subsection.8.4}{}}
-\gdef\lastpage@lastpage{12}
+\newlabel{LastPage}{{11\protect \,.\protect \,1\protect \,.\protect \,2}{20}{QUBO Transformation Code}{lstnumber.2.23}{}}
+\gdef\lastpage@lastpage{20}
 \gdef\lastpage@lastpageHy{}
-\gdef \@abspage@last{14}
+\gdef \@abspage@last{23}

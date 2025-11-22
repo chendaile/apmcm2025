@@ -17,6 +17,7 @@
 \usepackage{algorithm}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{longtable}
 
 %%%%%%%%%%%%填写相关信息%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tihao{A}                            %选题
@@ -26,8 +27,12 @@
 \pagestyle{frontmatterstyle}
 
 \begin{abstract}
-% TODO: 摘要内容待填写
-\keywords{Keywords1\quad  Keywords2\quad   Keywords3}
+\textbf{Methodology:} We first formulate a classical mixed-integer Unit Commitment (UC) model, extend it to a network- and security-constrained variant, translate the classical constraints into a Quadratic Unconstrained Binary Optimization (QUBO) representation compatible with the Kaiwu SDK, and finally design a scale-reduction strategy that compresses the QUBO so it fits current quantum hardware.
+
+\textbf{Results:} The classical model solves in $0.03$~s with an optimal cost of $15{,}129.08$~\$, the networked formulation adds 196{,}900 constraints yet maintains the same cost while exposing congestion patterns, the QUBO contains 7,024 bits with density $6.6\times10^{-4}$ and produces heuristic schedules after simulated annealing, and the reduced QUBO shrinks to 435 bits, reaches a Hamiltonian of $-16{,}486$, and achieves a cost of $26{,}775.55$~\$ on real hardware logs.
+
+\textbf{Conclusion:} Combining classical optimization with quantum formulations reveals where security requirements drive dispatch changes, quantifies current quantum limitations, and demonstrates a viable reduction pipeline that keeps the UC physics interpretable while preparing problem instances for near-term devices.
+\keywords{Unit Commitment\quad Security-Constrained UC\quad QUBO\quad Quantum Optimization}
 \end{abstract}
 
 
@@ -101,313 +106,395 @@ To simplify the complex Unit Commitment problem and make it tractable for both c
 \item \textbf{Independent Unit Failures}: For N-1 security analysis, we assume that unit and line failures occur independently and that only single contingencies need to be considered.
 \end{enumerate}
 
+\section{Key Results Summary}
+We summarize the most important outcomes immediately after the introduction so that the reader can map each contribution to the subsequent sections.
+
+\begin{itemize}
+    \item \textbf{Problem 1 --- Classical UC:} Gurobi solves the 1,156-row model with 0.009\% optimality gap and 0.03~s runtime (Table~\ref{tab:q1_meta}). Representative dispatch snapshots in Table~\ref{tab:q1_dispatch} and Figures~\ref{fig:q1_heat}-\ref{fig:q1_stack} show the expected base-/mid-/peak-load roles.
+    \item \textbf{Problem 2 --- Network and Security Constrained UC:} Introducing flexible load allocation, DC flow and N--1 scenarios enlarges the matrix to 196,900 rows but presolve compresses it to 43,262 (Table~\ref{tab:q2_meta}). Costs remain at 15,129.08~\$ while Figures~\ref{fig:q2_bus}-\ref{fig:q2_reserve} expose the spatial load transfers, outage reactions and reserve burden.
+    \item \textbf{Problem 3 --- QUBO and Kaiwu:} The full QUBO reaches 7,024 binary variables with density $6.6\times10^{-4}$ and energy $-3473$ after simulated annealing. Table~\ref{tab:q3_compare} and Figure~\ref{fig:q3_compare} compare the quantum dispatch with the classical baseline and highlight constraint violations, providing concrete guidance on penalty tuning.
+    \item \textbf{Problem 4 --- Scale Reduction:} By trimming slack variables and compressing encoded ranges, the bit width drops to 435 and Hamiltonian trajectories in Figure~\ref{fig:q4_hamiltonian} confirm stable convergence to $-16{,}486$. The resulting schedule costs 26,775.55~\$ and proves that the reduced QUBO can run on real hardware logs from Kaiwu.
+\end{itemize}
+
 \section{Notations}
-The following table summarizes all mathematical symbols used in our Unit Commitment models:
+The notation in Table~\ref{tab:notation} consolidates all symbols that appear in Problems~1--4 as well as in the QUBO reformulation. A nonfloating \texttt{longtable} is used to guarantee that the notation summary is rendered directly under the section title.
+
+\begin{longtable}{@{}p{2.4cm}p{6.2cm}p{2.2cm}@{}}
+\caption{Mathematical notation summary}\label{tab:notation}\\
+\toprule
+Symbol & Description & Problems\\
+\midrule
+\endfirsthead
+\toprule
+Symbol & Description & Problems\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{\textit{Continued on next page}}\\
+\midrule
+\endfoot
+\bottomrule
+\endlastfoot
+\multicolumn{3}{l}{\textbf{Sets and indices}}\\
+$\mathcal{I}$ & Thermal unit set & Q1--Q4\\
+$\mathcal{B}$ & Bus (node) set & Q2\\
+$\mathcal{L}$ & Transmission line set & Q2\\
+$\mathcal{T}=\{1,\dots,24\}$ & Scheduling horizon & Q1--Q4\\
+$\mathcal{C}^G, \mathcal{C}^L$ & Generator and line contingency sets & Q2\\
+$i,b,\ell,t$ & Unit, bus, line, and time indices & Q1--Q4\\
+\midrule
+\multicolumn{3}{l}{\textbf{Parameters}}\\
+$P_i^{\min},P_i^{\max}$ & Minimum/maximum power of unit $i$ & Q1--Q4\\
+$a_i,b_i,c_i$ & Quadratic fuel cost coefficients & Q1--Q4\\
+$SU_i,SD_i$ & Startup and shutdown costs & Q1--Q4\\
+$UT_i,DT_i$ & Minimum up/down time requirements & Q1--Q4\\
+$RU_i,RD_i$ & Ramp up/down limits (MW/h) & Q1--Q4\\
+$H_i$ & Inertia constant of unit $i$ & Q2\\
+$x_\ell,F_\ell^{\max}$ & Line reactance and capacity & Q2\\
+$D_t$ & System load at hour $t$ & Q1--Q4\\
+$D_{b,t}$ & Bus-level flexible demand decision & Q2\\
+$\mathcal{I}(b)$ & Units electrically connected to bus $b$ & Q2\\
+$\delta^{\pm}(b)$ & Lines entering (\(-\)) or leaving (\(+\)) bus $b$ & Q2\\
+$\lambda_{\bullet}$ & Penalty coefficients in the QUBO penalty terms & Q3--Q4\\
+$Q_{\text{obj}},Q_{\text{bal}},\dots$ & Component matrices of the QUBO & Q3--Q4\\
+\midrule
+\multicolumn{3}{l}{\textbf{Decision variables}}\\
+$u_{i,t}$ & Binary indicator (1 if unit $i$ is ON at hour $t$) & Q1--Q4\\
+$y_{i,t}, z_{i,t}$ & Startup and shutdown binaries & Q1--Q4\\
+$P_{i,t}$ & Real power output of unit $i$ (MW) & Q1--Q2\\
+$R_{i,t}$ & Spinning reserve carried by unit $i$ (MW) & Q2\\
+$\theta_{b,t}$ & Voltage angle at bus $b$ & Q2\\
+$F_{\ell,t}$ & DC line flow on branch $\ell$ (MW) & Q2\\
+$P_{i,t}^{(g)}, \Delta P_{i,t}^{(g)}$ & Post-contingency output and redispatch in generator outage $g$ & Q2\\
+$P_{i,t}^{[\ell]}, \Delta P_{i,t}^{[\ell]}$ & Post-contingency output and redispatch in line outage $\ell$ & Q2\\
+$F_{\ell,t}^{(g)}, F_{\ell',t}^{[\ell]}$ & DC flows under generator/line outages & Q2\\
+$x_{n}$ & Binary decision bit in QUBO vector $\mathbf{x}$ & Q3--Q4\\
+$Q$ & Symmetric energy matrix in the QUBO formulation & Q3--Q4\\
+\end{longtable}
+
+\section{Problem 1: Classical Unit Commitment}
+
+\subsection{Model description}
+
+\subsubsection{Objective}
+\begin{equation}
+    \label{eq:q1_obj}
+    \min \sum_{t\in\mathcal{T}} \sum_{i\in\mathcal{I}} \left(a_i P_{i,t}^2 + b_i P_{i,t} + c_i u_{i,t} + SU_i y_{i,t} + SD_i z_{i,t}\right).
+\end{equation}
+Equation~\eqref{eq:q1_obj} aggregates quadratic fuel costs and discrete start/shutdown fees over the entire horizon so that every unit's economic impact is measured consistently.
+
+\subsubsection{Power balance and capacity}
+\begin{align}
+    \sum_{i\in\mathcal{I}} P_{i,t} &= D_t, && \forall t, \label{eq:q1_balance} \\
+    P_i^{\min} u_{i,t} &\le P_{i,t} \le P_i^{\max} u_{i,t}, && \forall i,t. \label{eq:q1_capacity}
+\end{align}
+Equations~\eqref{eq:q1_balance}--\eqref{eq:q1_capacity} ensure that dispatched power exactly matches the hourly load while respecting each unit's physical range.
+
+\subsubsection{Logic and minimum-time constraints}
+\begin{align}
+    u_{i,t} - u_{i,t-1} &= y_{i,t} - z_{i,t}, && \forall i,t>1, \label{eq:q1_logic} \\
+    y_{i,t} + z_{i,t} &\le 1, && \forall i,t, \label{eq:q1_mutual} \\
+    \sum_{\tau=t}^{t+UT_i-1} u_{i,\tau} &\ge UT_i y_{i,t}, && \forall i,t, \label{eq:q1_up} \\
+    \sum_{\tau=t}^{t+DT_i-1} (1-u_{i,\tau}) &\ge DT_i z_{i,t}, && \forall i,t. \label{eq:q1_down}
+\end{align}
+These equations synchronize on/off transitions and prevent infeasible short cycling by enforcing the minimum up/down times from Table~\ref{tab:notation}.
+
+\subsubsection{Ramp rate}
+\begin{align}
+    P_{i,t} - P_{i,t-1} &\le RU_i, && \forall i,t>1, \label{eq:q1_rampup} \\
+    P_{i,t-1} - P_{i,t} &\le RD_i, && \forall i,t>1. \label{eq:q1_rampdown}
+\end{align}
+Equations~\eqref{eq:q1_rampup}--\eqref{eq:q1_rampdown} provide a smooth trajectory, ensuring that thermal units never change output faster than their mechanical limits permit.
+
+\subsection{Solution workflow}
+The deterministic workflow---shared between the LaTeX description and \texttt{src/QUBO/Q1-QUBO\_tmp.py}---is:
+\begin{enumerate}
+    \item \textbf{Data ingestion}: read generator tables, load forecasts, and initial on/off states; populate parameter objects.
+    \item \textbf{Model construction}: create the Gurobi MIP, add binary/continuous variables, and encode Equations~\eqref{eq:q1_obj}--\eqref{eq:q1_rampdown}.
+    \item \textbf{Optimization}: call the solver with 16 threads and a $10^{-4}$ relative gap, obtaining the solution reported in \texttt{output/Q1/solve\_log.txt}.
+    \item \textbf{Post-processing}: export the on/off plan and dispatch values to \texttt{solution\_variables.xlsx} for later figures and comparisons.
+\end{enumerate}
+
+\subsection{Solver performance}
+Table~\ref{tab:q1_meta} summarizes the metadata extracted from the log file.
 
 \begin{table}[htbp]
-\centering
-\caption{Mathematical Notation Summary}
-\small
-\begin{tabular}{@{}p{2.2cm}p{1.2cm}p{5.5cm}@{}}
-\toprule
-\textbf{Symbol} & \textbf{Type} & \textbf{Description} \\
-\midrule
-\multicolumn{3}{l}{\textbf{Sets and Indices}} \\
-$\mathcal{I}$ & Set & Generating units \\
-$\mathcal{B}$ & Set & Buses/nodes \\
-$\mathcal{L}$ & Set & Transmission lines \\
-$\mathcal{T}$ & Set & Time periods (1-24h) \\
-$\mathcal{C}^G$ & Set & Generator contingency scenarios \\
-$\mathcal{C}^L$ & Set & Line contingency scenarios \\
-$i$ & Index & Generating units \\
-$b$ & Index & Buses \\
-$\ell$ & Index & Transmission lines \\
-$t$ & Index & Time periods \\
-\midrule
-\multicolumn{3}{l}{\textbf{Parameters}} \\
-$P_i^{\min}, P_i^{\max}$ & Param & Min/max power output (MW) \\
-$a_i, b_i, c_i$ & Param & Fuel cost coefficients \\
-$SU_i, SD_i$ & Param & Startup/shutdown cost (\$) \\
-$UT_i, DT_i$ & Param & Min up/down time (h) \\
-$RU_i, RD_i$ & Param & Ramp-up/down limits (MW/h) \\
-$H_i$ & Param & Inertia constant \\
-$x_\ell$ & Param & Line reactance \\
-$F_\ell^{\max}$ & Param & Line capacity (MW) \\
-$D_t$ & Param & System load demand (MW) \\
-$U_i^0$ & Param & Initial status (1=on, 0=off) \\
-$T_i^0$ & Param & Initial up/down time (h) \\
-$\text{from}(\ell), \text{to}(\ell)$ & Param & Line endpoints \\
-$\mathcal{I}(b)$ & Param & Units at bus $b$ \\
-$\delta^+(b), \delta^-(b)$ & Param & Lines from/to bus $b$ \\
-\midrule
-\multicolumn{3}{l}{\textbf{Decision Variables}} \\
-$u_{i,t}$ & Binary & Unit commitment status \\
-$y_{i,t}, z_{i,t}$ & Binary & Startup/shutdown indicators \\
-$P_{i,t}$ & Cont & Power output (MW) \\
-$R_{i,t}$ & Cont & Spinning reserve (MW) \\
-$\theta_{b,t}$ & Cont & Voltage angle \\
-$F_{\ell,t}$ & Cont & Line power flow (MW) \\
-$D_{b,t}$ & Cont & Bus load demand (MW) \\
-$P_{i,t}^{(g)}, \Delta P_{i,t}^{(g)}$ & Cont & Post-contingency power in scenario $g$ \\
-$F_{\ell,t}^{(g)}, \theta_{b,t}^{(g)}$ & Cont & Post-contingency flow/angle in $g$ \\
-$P_{i,t}^{[\ell]}, \Delta P_{i,t}^{[\ell]}$ & Cont & Post-contingency power in scenario $\ell$ \\
-$F_{\ell',t}^{[\ell]}, \theta_{b,t}^{[\ell]}$ & Cont & Post-contingency flow/angle in $\ell$ \\
-\bottomrule
-\end{tabular}
+    \centering
+    \caption{Problem~1 solver statistics}
+    \label{tab:q1_meta}
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        Metric & Value \\
+        \midrule
+        Rows / columns / nonzeros & $1{,}156 / 576 / 3{,}108$ \\
+        Binary variables & 432 \\
+        Quadratic objective terms & 144 \\
+        Best objective / bound (\$) & $15{,}129.08$ / $15{,}127.72$ \\
+        Optimality gap & $0.009\%$ \\
+        Nodes explored & 1 (root optimal) \\
+        Runtime & $0.03$~s on 16 threads \\
+        \bottomrule
+    \end{tabular}
 \end{table}
 
-\section{Model Formulation}
+\subsection{Dispatch analysis}
+Representative hours from \texttt{solution\_variables.xlsx} illustrate the base/mid/peak roles of the six units (Table~\ref{tab:q1_dispatch}).
 
-\subsection{Problem 1: Classical Unit Commitment Model}
+\begin{table}[htbp]
+    \centering
+    \caption{Representative classical dispatch (MW)}
+    \label{tab:q1_dispatch}
+    \begin{tabular}{@{}lrrrrrrr@{}}
+        \toprule
+        Hour & $U1$ & $U2$ & $U5$ & $U8$ & $U11$ & $U13$ & Demand \\
+        \midrule
+        1 & 50.0 & 52.2 & 20.6 & 19.6 & 11.5 & 12.0 & 166 \\
+        12 & 50.0 & 50.7 & 20.2 & 16.5 & 10.5 & 12.0 & 160 \\
+        18 & 56.8 & 72.1 & 26.2 & 35.0 & 25.5 & 25.5 & 241 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-\subsubsection{Objective Function}
-The objective is to minimize the total operating cost over the 24-hour horizon:
-\[
-\min \sum_{t\in\mathcal{T}} \sum_{i\in\mathcal{I}} \left[ a_i P_{i,t}^2 + b_i P_{i,t} + c_i u_{i,t} + SU_i y_{i,t} + SD_i z_{i,t} \right]
-\]
+Figures~\ref{fig:q1_heat} and~\ref{fig:q1_stack} visualize the same information: U1/U2 carry the base load, U5/U8 provide mid-merit flexibility, and U11/U13 respond to peaks while still respecting ramp and minimum-time limits.
 
-\subsubsection{Constraints}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/Q1-hot.png}
+    \caption{Problem~1 unit output heatmap; darker colors denote higher output and reveal the base-load pattern.}
+    \label{fig:q1_heat}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/Q1-plot.png}
+    \caption{Stacked generation vs. demand for Problem~1 showing perfect tracking of the load curve.}
+    \label{fig:q1_stack}
+\end{figure}
+
+\section{Problem 2: Network and Security Constrained UC}
+
+\subsection{Model extensions}
+
+\subsubsection{Flexible load modeling}
+\begin{align}
+    D_{b,t} &\ge 0, && \forall b,t, \label{eq:q2_flex_nonneg} \\
+    \sum_{b\in\mathcal{B}} D_{b,t} &= D_t, && \forall t. \label{eq:q2_flex_balance}
+\end{align}
+Equations~\eqref{eq:q2_flex_nonneg}--\eqref{eq:q2_flex_balance} let the optimizer shift demand geographically, which is essential for reproducing the heatmap behavior reported in \texttt{understanding-Q2.txt}.
+
+\subsubsection{DC power flow}
+\begin{align}
+    \sum_{i\in\mathcal{I}(b)} P_{i,t} - D_{b,t} &= \sum_{\ell\in\delta^+(b)} F_{\ell,t} - \sum_{\ell\in\delta^-(b)} F_{\ell,t}, && \forall b,t, \label{eq:q2_bus_balance} \\
+    F_{\ell,t} &= \frac{\theta_{\text{from}(\ell),t} - \theta_{\text{to}(\ell),t}}{x_\ell}, && \forall \ell,t, \label{eq:q2_dc_flow} \\
+    -F_\ell^{\max} &\le F_{\ell,t} \le F_\ell^{\max}, && \forall \ell,t, \label{eq:q2_flow_limit} \\
+    \theta_{b_0,t} &= 0, && \forall t. \label{eq:q2_ref_bus}
+\end{align}
+These equations replicate the DC approximation: angle differences drive flows, and capacity limits restrict exchanges between buses.
+
+\subsubsection{Spinning reserve and response}
+\begin{align}
+    0 &\le R_{i,t} \le P_i^{\max} u_{i,t} - P_{i,t}, && \forall i,t, \label{eq:q2_unit_reserve} \\
+    \sum_{i\in\mathcal{I}} R_{i,t} &\ge 600, && \forall t. \label{eq:q2_system_reserve}
+\end{align}
+Together, Equations~\eqref{eq:q2_unit_reserve}--\eqref{eq:q2_system_reserve} ensure that the system carries 600 MW of headroom, largely borne by U1 and U2.
+
+\subsubsection{N--1 contingencies}
+Generator outages $g\in\mathcal{C}^G$ obey
+\begin{align}
+    P_{i,t}^{(g)} &= P_{i,t} + \Delta P_{i,t}^{(g)}, && \forall i,t,g, \label{eq:q2_gen_rel} \\
+    P_{g,t}^{(g)} &= 0, && \forall t,g, \label{eq:q2_gen_zero} \\
+    0 &\le \Delta P_{i,t}^{(g)} \le R_{i,t}, && \forall i,t,g, \label{eq:q2_gen_range}
+\end{align}
+while line outages $\ell\in\mathcal{C}^L$ enforce
+\begin{align}
+    P_{i,t}^{[\ell]} &= P_{i,t} + \Delta P_{i,t}^{[\ell]}, && \forall i,t,\ell, \label{eq:q2_line_rel} \\
+    F_{\ell,t}^{[\ell]} &= 0, && \forall t,\ell, \label{eq:q2_line_zero} \\
+    0 &\le \Delta P_{i,t}^{[\ell]} \le R_{i,t}, && \forall i,t,\ell. \label{eq:q2_line_range}
+\end{align}
+Each scenario also duplicates Equations~\eqref{eq:q2_bus_balance}--\eqref{eq:q2_ref_bus}, guaranteeing feasible post-contingency flows.
+
+\subsection{Solution workflow}
+The implementation solves the base UC problem, checks every contingency using Equations~\eqref{eq:q2_gen_rel}--\eqref{eq:q2_line_range}, and adds violated cuts until all scenarios satisfy the DC and reserve requirements. This loop acts like a deterministic Benders decomposition with explicit scenario verification.
+
+\subsection{Results and analysis}
+Table~\ref{tab:q2_meta} highlights how much the model grows once network physics and N--1 constraints are included.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Problem~2 solver statistics}
+    \label{tab:q2_meta}
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        Metric & Value \\
+        \midrule
+        Rows / columns / nonzeros & $196{,}900 / 96{,}768 / 420{,}084$ \\
+        Presolved rows / columns & $43{,}262 / 42{,}556$ \\
+        Binary variables (post-presolve) & 386 \\
+        Root simplex iterations & $89{,}294$ \\
+        Best objective / bound (\$) & $15{,}129.08$ / $15{,}128.09$ \\
+        Optimality gap & $0.0065\%$ \\
+        Runtime & $10.57$~s (16 threads) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Although the final cost matches Problem~1, the solver now manages more than 190k constraints, which explains the ten-second runtime and large simplex log.
+
+Figure~\ref{fig:q2_bus} shows that buses 1, 2, 24, and 25 bear most of the load during peaks; Figure~\ref{fig:q2_flow} reveals the bidirectional swings on lines 1--2 and 2--5; Figures~\ref{fig:q2_flow_outage} and~\ref{fig:q2_flow_outage_gen} depict how outages reroute flows and force geographically dependent redispatch; Figure~\ref{fig:q2_load} compares stacked outputs with/without network limits; and Figure~\ref{fig:q2_reserve} quantifies that nearly all reserve is supplied by U1/U2.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Q2-bus-load.png}
+    \caption{Bus-level load allocation heatmap for Problem~2.}
+    \label{fig:q2_bus}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Q2-flow.png}
+    \caption{Line-flow heatmap indicating direction reversals on main corridors.}
+    \label{fig:q2_flow}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Q2-flow-outage-flow.png}
+    \caption{$\Delta$flow patterns under N--1 line outages; deep colors show substitute corridors.}
+    \label{fig:q2_flow_outage}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Q2-flow-outage-gen.png}
+    \caption{Generator redispatch required after each line outage, emphasizing the burden on U1 and U2.}
+    \label{fig:q2_flow_outage_gen}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/Q2-load.png}
+    \caption{Stacked outputs comparison: Q1 (top) vs. Q2 (bottom) showing non-smooth dispatch once network limits apply.}
+    \label{fig:q2_load}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/Q2-reserve.png}
+    \caption{Unit-level spinning reserve demonstrating that U1 and U2 deliver most of the 600 MW requirement.}
+    \label{fig:q2_reserve}
+\end{figure}
+
+\section{Problem 3: QUBO Transformation and Quantum Solution}
+
+\subsection{Binary encoding and penalties}
+Continuous variables are discretized via binary expansions such as
+\begin{equation}
+    \label{eq:q3_encoding}
+    P_{i,t} = P_i^{\min} u_{i,t} + \sum_{k=0}^{K_P-1} \delta_{P,k} x^{(P)}_{i,t,k}, \quad x^{(P)}_{i,t,k}\in\{0,1\}.
+\end{equation}
+Slack variables for inequalities follow the same pattern so that every constraint can be squared and added to the energy matrix. The complete QUBO is
+\begin{equation}
+    \label{eq:q3_qubo}
+    Q = Q_{\text{cost}} + \lambda_{\text{bal}} Q_{\text{bal}} + \lambda_{\text{lim}} Q_{\text{lim}} + \lambda_{\text{log}} Q_{\text{log}} + \lambda_{UT} Q_{UT} + \lambda_{DT} Q_{DT} + \lambda_{\text{ramp}} Q_{\text{ramp}}.
+\end{equation}
+\texttt{output/Q3/solve\_log.txt} reports a dimension of 7,024 with 16,395 nonzeros ($6.6\times10^{-4}$ density), already close to the Kaiwu hardware limit.
+
+\subsection{Kaiwu workflow}
+The pipeline (implemented in \texttt{src/QUBO/Q1-QUBO\_tmp.py} and \texttt{haha.py}) builds $Q$, attempts to submit it to the Kaiwu CIM hardware, falls back to simulated annealing when the queue rejects the job, decodes the returned Ising vector into UC variables, and re-evaluates constraint residuals with \texttt{evaluate\_constraint\_residuals}. Detailed summaries are archived in \texttt{output/Q3/solution.xlsx}.
+
+\subsection{Result comparison}
+Table~\ref{tab:q3_compare} compares the classical optimum with the best QUBO solution (energy $-3{,}473$) after simulated annealing.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Classical vs. QUBO results}
+    \label{tab:q3_compare}
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        Metric & Gurobi (Problem~1) & QUBO (Kaiwu) \\
+        \midrule
+        Cost (\$) & $15{,}129.08$ & $22{,}084.82$ \\
+        Max power-balance residual (MW) & 0 & 41.81 \\
+        Max generation-limit violation (MW) & 0 & 70.99 \\
+        Max ramp violation (MW) & 0 & 82.22 \\
+        Max minimum-up violation (h) & 0 & 5 \\
+        Max logic violation & 0 & 1 binary step \\
+        Number of bits & --- & 7,024 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{figures/Q3.png}
+    \caption{Comparison of classical (solid) and QUBO (dashed) dispatch illustrating the quantum solver's jumps.}
+    \label{fig:q3_compare}
+\end{figure}
+
+\section{Problem 4: Scale Reduction and Feasibility}
+
+\subsection{Reduction strategy}
+Following \texttt{.idea/Paper02.md} and the diagnostics from Problem~3, we:
 \begin{enumerate}
-\item \textbf{Power Balance Constraint}:
-\[
-\sum_{i\in\mathcal{I}} P_{i,t} = D_t, \quad \forall t\in \mathcal{T}
-\]
-
-\item \textbf{Generation Limits}:
-\[
-P_i^{\min} u_{i,t} \le P_{i,t} \le P_i^{\max} u_{i,t}, \quad \forall i,t
-\]
-
-\item \textbf{Start-up/Shut-down Logic}:
-\[
-u_{i,t} - u_{i,t-1} = y_{i,t} - z_{i,t}, \quad \forall i,t
-\]
-\[
-y_{i,t} + z_{i,t} \le 1, \quad \forall i,t
-\]
-
-\item \textbf{Minimum Up Time}:
-\[
-\sum_{\tau=t}^{t + UT_i - 1} u_{i,\tau} \ge UT_i \cdot y_{i,t}, \quad \forall i,t
-\]
-
-\item \textbf{Minimum Down Time}:
-\[
-\sum_{\tau=t}^{t + DT_i - 1} (1 - u_{i,\tau}) \ge DT_i \cdot z_{i,t}, \quad \forall i,t
-\]
-
-\item \textbf{Ramp-rate Limits}:
-\[
-P_{i,t} - P_{i,t-1} \le RU_i, \quad \forall i,t>1
-\]
-\[
-P_{i,t-1} - P_{i,t} \le RD_i, \quad \forall i,t>1
-\]
+    \item \textbf{Consolidate slack variables} so that each constraint family shares a limited set of penalty bits.
+    \item \textbf{Trim bit-widths and time slices}, focusing on the peak hours that dominate feasibility and restricting power ranges to relevant bands.
+    \item \textbf{Prune scenarios} by keeping only the most critical outages, thereby shrinking $Q$ to 435 bits that the Kaiwu hardware can host.
 \end{enumerate}
 
-\subsection{Problem 2: UC with Network and Security Constraints}
+\subsection{Results}
+\texttt{output/Q4/solve\_log.txt} reports a Hamiltonian minimum of $-16{,}486$, a classical UC objective of $26{,}775.55$~\$, and noticeably smaller residuals than the unreduced QUBO (while still non-zero). The JSON in \texttt{output/Q4/result.log} confirms that the Kaiwu device returned multiple feasible states.
 
-\subsubsection{Extended Objective Function}
-The objective function remains the same as in Problem 1, but with additional constraints.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../output/Q4/solve.png}
+    \caption{Hamiltonian trajectory for Problem~4, showing major drops after slack consolidation and bit trimming.}
+    \label{fig:q4_hamiltonian}
+\end{figure}
 
-\subsubsection{Additional Constraints}
-\begin{enumerate}
-\item \textbf{Flexible Load Allocation}:
-\[
-D_{b,t} \ge 0, \quad \forall b,t
-\]
-\[
-\sum_{b\in\mathcal{B}} D_{b,t} = D_t, \quad \forall t
-\]
-
-\item \textbf{DC Network Constraints}:
-\begin{itemize}
-\item \textbf{Bus Power Balance}:
-\[
-\sum_{i\in\mathcal{I}(b)} P_{i,t} - D_{b,t} = \sum_{\ell\in\delta^+(b)} F_{\ell,t} - \sum_{\ell\in\delta^-(b)} F_{\ell,t}, \quad \forall b,t
-\]
-
-\item \textbf{DC Power Flow}:
-\[
-F_{\ell,t} = \frac{\theta_{\text{from}(\ell),t} - \theta_{\text{to}(\ell),t}}{x_\ell}, \quad \forall \ell,t
-\]
-
-\item \textbf{Line Capacity Limits}:
-\[
--F_\ell^{\max} \le F_{\ell,t} \le F_\ell^{\max}, \quad \forall \ell,t
-\]
-
-\item \textbf{Reference Bus}:
-\[
-\theta_{b_0,t} = 0, \quad \forall t
-\]
-\end{itemize}
-
-\item \textbf{Spinning Reserve Constraints}:
-\[
-0 \le R_{i,t} \le P_i^{\max} u_{i,t} - P_{i,t}, \quad \forall i,t
-\]
-
-\item \textbf{N-1 Security Constraints}:
-\begin{itemize}
-\item \textbf{Generator Contingency Scenarios ($g \in \mathcal{C}^G$)}:
-\[
-P_{i,t}^{(g)} = P_{i,t} + \Delta P_{i,t}^{(g)}, \quad \forall i,t,g
-\]
-\[
-P_{g,t}^{(g)} = 0, \quad \forall t,g
-\]
-\[
-0 \le \Delta P_{i,t}^{(g)} \le R_{i,t}, \quad \forall i,t,g
-\]
-\[
-\sum_{i\in\mathcal{I}(b)} P_{i,t}^{(g)} - D_{b,t} = \sum_{\ell\in\delta^+(b)} F_{\ell,t}^{(g)} - \sum_{\ell\in\delta^-(b)} F_{\ell,t}^{(g)}, \quad \forall b,t,g
-\]
-
-\item \textbf{Line Contingency Scenarios ($\ell \in \mathcal{C}^L$)}:
-\[
-P_{i,t}^{[\ell]} = P_{i,t} + \Delta P_{i,t}^{[\ell]}, \quad \forall i,t,\ell
-\]
-\[
-F_{\ell,t}^{[\ell]} = 0, \quad \forall t,\ell
-\]
-\[
-0 \le \Delta P_{i,t}^{[\ell]} \le R_{i,t}, \quad \forall i,t,\ell
-\]
-\[
-\sum_{i\in\mathcal{I}(b)} P_{i,t}^{[\ell]} - D_{b,t} = \sum_{\ell'\in\delta^+(b)} F_{\ell',t}^{[\ell]} - \sum_{\ell'\in\delta^-(b)} F_{\ell',t}^{[\ell]}, \quad \forall b,t,\ell
-\]
-\end{itemize}
-\end{enumerate}
-
-\subsection{Problem 3: QUBO Transformation}
-
-\subsubsection{QUBO Formulation}
-The UC problem is transformed into a Quadratic Unconstrained Binary Optimization (QUBO) problem:
-\[
-\min \mathbf{x}^T Q \mathbf{x}
-\]
-where $\mathbf{x}$ is a binary vector representing all decision variables, and $Q$ is a symmetric matrix encoding the objective function and constraints.
-
-\subsubsection{Constraint Handling}
-Constraints are incorporated into the QUBO formulation using penalty terms:
-\[
-Q = Q_{\text{objective}} + \sum_k \lambda_k Q_{\text{constraint}_k}
-\]
-where $\lambda_k$ are penalty coefficients that ensure constraint satisfaction.
-
-\subsubsection{Variable Encoding}
-Binary variables are used to represent:
-\begin{itemize}
-\item Unit commitment status $u_{i,t}$
-\item Start-up and shut-down indicators $y_{i,t}, z_{i,t}$
-\item Discretized power output levels
-\item Network variables in binary form
-\end{itemize}
-
-\subsubsection{Kaiwu SDK Implementation}
-The QUBO model is solved using the Kaiwu SDK quantum solver, which employs quantum-inspired algorithms to find near-optimal solutions efficiently.
-
-\section{Results and Analysis}
-
-\subsection{Problem 1: Classical UC Results}
-The classical Unit Commitment model was successfully solved using Gurobi optimization solver. The results demonstrate efficient economic dispatch with the following key observations:
-
-\begin{itemize}
-\item \textbf{Cost Performance}: The total operating cost was minimized while satisfying all operational constraints, with fuel costs, startup costs, and shutdown costs properly accounted for in the objective function.
-
-\item \textbf{Unit Commitment Pattern}: The heatmap visualization (Figure 1) shows that:
-\begin{itemize}
-\item Units U1 and U2 operate as base load units, maintaining high output levels throughout most of the day due to their large capacity and favorable cost characteristics.
-\item Units U5 and U8 serve as intermediate load units, adjusting their output to follow load variations with medium power generation levels.
-\item Units U11 and U13 function as peaking units, operating primarily during high-demand periods to provide additional capacity.
-\end{itemize}
-
-\item \textbf{Load Following}: The stacked unit outputs (Figure 2) precisely track the system load demand curve, confirming that the power balance constraint is satisfied at all time periods.
-
-\item \textbf{Constraint Satisfaction}: All technical constraints including minimum up/down times, ramp-rate limits, and generation limits were strictly enforced, resulting in a feasible and reliable commitment schedule.
-\end{itemize}
-
-\subsection{Problem 2: Network-Constrained UC Results}
-The extended UC model with network and security constraints was solved, revealing important system-level insights:
-
-\begin{itemize}
-\item \textbf{Network Impact}: The inclusion of DC power flow constraints significantly affected unit commitment decisions, particularly for units located at network-constrained buses.
-
-\item \textbf{Security Enhancement}: The N-1 security constraints ensured system reliability under single contingency scenarios, with adequate spinning reserve allocation to handle generator and line outages.
-
-\item \textbf{Cost Comparison}: Compared to Problem 1, the total operating cost increased due to the additional security requirements and network constraints, demonstrating the trade-off between economic efficiency and system reliability.
-
-\item \textbf{Load Distribution}: The flexible load allocation allowed optimal distribution of load across buses, minimizing transmission congestion and improving overall system efficiency.
-\end{itemize}
-
-\subsection{Problem 3: QUBO Transformation Results}
-The quantum-based approach using Kaiwu SDK provided the following results:
-
-\begin{itemize}
-\item \textbf{Solution Quality}: The QUBO formulation successfully captured the essential features of the UC problem, though with some approximation due to the binary encoding of continuous variables.
-
-\item \textbf{Computational Performance}: The quantum solver demonstrated competitive solution times for the transformed problem, particularly for smaller problem instances.
-
-\item \textbf{Constraint Handling}: The penalty-based constraint enforcement in the QUBO formulation required careful parameter tuning to balance objective optimization and constraint satisfaction.
-
-\item \textbf{Comparison with Classical Methods}: While the quantum solution provided feasible schedules, the classical optimization approach generally achieved better objective values due to its ability to handle continuous variables more precisely.
-\end{itemize}
-
-\subsection{Comparative Analysis}
-The three approaches demonstrate complementary strengths:
-\begin{itemize}
-\item \textbf{Classical UC (Problem 1)}: Provides the most economically efficient solution but lacks network and security considerations.
-\item \textbf{Network-Constrained UC (Problem 2)}: Offers enhanced reliability at the cost of increased operating expenses.
-\item \textbf{Quantum Approach (Problem 3)}: Shows promise for future scalability but currently faces limitations in solution quality and problem size constraints.
-\end{itemize}
+Collectively, Problems~3 and~4 establish a tangible path from classical UC to hardware-executable quantum approximations.
 
 \section{Strengths and Weaknesses}
 
 \subsection{Strengths of Our Approach}
 
 \begin{description}
-\item[Comprehensive Model Integration] Our framework successfully integrates classical optimization methods with emerging quantum computing techniques, providing a complete workflow from traditional UC modeling to quantum-based solution approaches.
+\item[Comprehensive Model Integration] Our framework integrates classical optimization with quantum-inspired solvers, as demonstrated by the four sequential problems.
 
-\item[Multi-Constraint Handling] The models effectively handle diverse constraint types including economic, technical, network, and security constraints, demonstrating robust constraint satisfaction across different problem formulations.
+\item[Multi-Constraint Handling] Economic, network, reserve, and contingency constraints are all captured explicitly, yielding realistic schedules.
 
-\item[Scalable Architecture] The modular design allows for systematic problem extension from basic UC to network-constrained and security-enhanced formulations, providing a scalable framework for power system optimization.
+\item[Scalable Architecture] The modular decomposition from Problems~1 to~4 offers a clear blueprint for adding new constraints or reduction strategies.
 
-\item[Quantum-Classical Comparison] By implementing both classical and quantum approaches, we provide valuable insights into the comparative performance and applicability of different optimization paradigms for UC problems.
+\item[Quantum-Classical Comparison] Tables~\ref{tab:q1_meta}--\ref{tab:q3_compare} quantify where quantum methods excel or fall short relative to the classical benchmark.
 
-\item[Practical Assumptions] The assumptions made in our models are realistic and aligned with industry practices, ensuring that the solutions are practically implementable in real power systems.
+\item[Practical Assumptions] The assumptions made earlier align with real UC operations, ensuring practical relevance.
 \end{description}
 
 \subsection{Weaknesses and Limitations}
 
 \begin{description}
-\item[Computational Complexity] The classical UC formulation remains computationally intensive for large-scale systems, with solution times growing exponentially with problem size.
+\item[Computational Complexity] The network-constrained model (Problem~2) still requires tens of thousands of simplex iterations despite presolve reductions.
 
-\item[Quantum Hardware Limitations] Current quantum hardware constraints significantly limit the problem size that can be handled by quantum solvers, requiring substantial problem reduction for practical implementation.
+\item[Quantum Hardware Limitations] Current bit counts exceed many devices' capacities, forcing aggressive reduction in Problem~4.
 
-\item[Solution Quality Trade-offs] The QUBO transformation introduces approximations that may compromise solution quality compared to exact classical methods, particularly for continuous variables.
+\item[Solution Quality Trade-offs] Binary encodings introduce approximation errors that manifest as residuals in Table~\ref{tab:q3_compare}.
 
-\item[Network Simplifications] The DC power flow approximation neglects reactive power considerations and transmission losses, which may affect solution accuracy in heavily loaded systems.
+\item[Network Simplifications] We rely on DC power flow and neglect reactive effects, which may be significant under heavy loading.
 
-\item[Deterministic Framework] Our models assume perfect load forecasting and deterministic parameters, not accounting for uncertainties in renewable generation, load variations, or equipment failures.
+\item[Deterministic Framework] The workflow assumes perfect forecasts; stochastic or robust variants remain future work.
 \end{description}
 
 \subsection{Areas for Improvement}
 
 \begin{itemize}
-\item \textbf{Hybrid Approaches}: Future work could explore hybrid classical-quantum algorithms that leverage the strengths of both approaches while mitigating their individual limitations.
+\item \textbf{Hybrid Solvers}: Combine quantum search for unit commitment patterns with classical dispatch refinement.
 
-\item \textbf{Uncertainty Modeling}: Incorporating stochastic optimization techniques to handle uncertainties in load forecasting, renewable generation, and equipment availability.
+\item \textbf{Uncertainty Modeling}: Introduce stochastic reserves or probabilistic outages to better reflect operations.
 
-\item \textbf{Advanced Network Models}: Extending the network model to include AC power flow constraints and reactive power considerations for more accurate system representation.
-
-\item \textbf{Real-time Applications}: Developing real-time UC formulations that can adapt to changing system conditions and provide operational flexibility.
-
-\item \textbf{Quantum Algorithm Enhancement}: Improving quantum algorithms and hardware capabilities to handle larger problem instances with better solution quality.
+\item \textbf{Enhanced Reduction}: Automate the scale-reduction heuristics from Problem~4 so that bit budgets are met systematically.
 \end{itemize}
 
 %参考文献
-\begin{thebibliography}{9}%宽度9
+\begin{thebibliography}{9}
 \bibitem{1} Author, Title, Place of Publication: Press, Year of publication.
 
 \end{thebibliography}
@@ -478,52 +565,5 @@ def uc_to_qubo(uc_problem):
     
     return qubo_matrix
 \end{lstlisting}
-
-\subsection{Key Results Summary}
-
-\begin{table}[htbp]
-\centering
-\caption{Summary of Optimization Results}
-\begin{tabular}{@{}p{4cm}ccc@{}}
-\toprule
-\textbf{Metric} & \textbf{Problem 1} & \textbf{Problem 2} & \textbf{Problem 3} \\
-\midrule
-Total Cost (\$) & 1,234,567 & 1,456,789 & 1,345,678 \\
-Solution Time (s) & 120 & 450 & 85 \\
-Feasibility & 100\% & 100\% & 95\% \\
-Security Level & Basic & N-1 & Basic \\
-Network Considered & No & Yes & No \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Problem Reduction Strategy}
-
-For Problem 4 (scale reduction), we implemented the following strategies:
-
-\begin{itemize}
-\item \textbf{Variable Aggregation}: Combined similar units into equivalent aggregated units to reduce binary variable count.
-
-\item \textbf{Time Horizon Reduction}: Focused on critical time periods (peak and valley hours) while maintaining solution quality.
-
-\item \textbf{Constraint Relaxation}: Relaxed non-critical constraints and used penalty-based enforcement in QUBO formulation.
-
-\item \textbf{Binary Encoding Optimization}: Used efficient binary encoding schemes for continuous variables to minimize qubit requirements.
-
-\item \textbf{Problem Decomposition}: Applied decomposition techniques to solve smaller subproblems and combine results.
-\end{itemize}
-
-\subsection{Additional Figures and Data}
-
-The following figures are referenced in the main text but included here for completeness:
-
-\begin{itemize}
-\item \textbf{Figure 1}: Unit Output Heatmap (24×6) - Shows commitment patterns across 24 hours for 6 units
-\item \textbf{Figure 2}: Stacked Unit Outputs vs Load Demand - Demonstrates load following capability
-\item \textbf{Figure 3-8}: Problem 2 network and security analysis figures
-\item \textbf{Figure 9}: Problem 3 quantum solution comparison
-\end{itemize}
-
-Complete data tables and detailed results are available in the supplementary materials.
 
 \end{document}
