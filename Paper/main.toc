@@ -2,40 +2,41 @@
 \contentsline {subsection}{\numberline {1\,.\,1}Problem Background}{1}{}%
 \contentsline {subsection}{\numberline {1\,.\,2}Problem Restatement}{1}{}%
 \contentsline {subsection}{\numberline {1\,.\,3}Problem Analysis}{2}{}%
-\contentsline {section}{\numberline {2}Assumptions}{2}{}%
-\contentsline {section}{\numberline {3}Key Results Summary}{3}{}%
-\contentsline {section}{\numberline {4}Notations}{4}{}%
-\contentsline {section}{\numberline {5}Problem 1: Classical Unit Commitment}{6}{}%
-\contentsline {subsection}{\numberline {5\,.\,1}Model description}{6}{}%
-\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,1}Objective}{6}{}%
-\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,2}Power balance and capacity}{6}{}%
-\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,3}Logic and minimum-time constraints}{6}{}%
-\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,4}Ramp rate}{7}{}%
-\contentsline {subsection}{\numberline {5\,.\,2}Solution workflow}{7}{}%
-\contentsline {subsection}{\numberline {5\,.\,3}Solver performance}{7}{}%
-\contentsline {subsection}{\numberline {5\,.\,4}Dispatch analysis}{7}{}%
-\contentsline {section}{\numberline {6}Problem 2: Network and Security Constrained UC}{8}{}%
-\contentsline {subsection}{\numberline {6\,.\,1}Model extensions}{8}{}%
-\contentsline {subsubsection}{\numberline {6\,.\,1\,.\,1}Flexible load modeling}{8}{}%
-\contentsline {subsubsection}{\numberline {6\,.\,1\,.\,2}DC power flow}{9}{}%
-\contentsline {subsubsection}{\numberline {6\,.\,1\,.\,3}Spinning reserve and response}{10}{}%
-\contentsline {subsubsection}{\numberline {6\,.\,1\,.\,4}N--1 contingencies}{10}{}%
-\contentsline {subsection}{\numberline {6\,.\,2}Solution workflow}{11}{}%
-\contentsline {subsection}{\numberline {6\,.\,3}Results and analysis}{11}{}%
-\contentsline {section}{\numberline {7}Problem 3: QUBO Transformation and Quantum Solution}{12}{}%
-\contentsline {subsection}{\numberline {7\,.\,1}Binary encoding and penalties}{12}{}%
-\contentsline {subsection}{\numberline {7\,.\,2}Kaiwu workflow}{13}{}%
-\contentsline {subsection}{\numberline {7\,.\,3}Result comparison}{14}{}%
-\contentsline {section}{\numberline {8}Problem 4: Scale Reduction and Feasibility}{16}{}%
-\contentsline {subsection}{\numberline {8\,.\,1}Reduction strategy}{16}{}%
-\contentsline {subsection}{\numberline {8\,.\,2}Results}{16}{}%
-\contentsline {section}{\numberline {9}Strengths and Weaknesses}{17}{}%
-\contentsline {subsection}{\numberline {9\,.\,1}Strengths of Our Approach}{17}{}%
-\contentsline {subsection}{\numberline {9\,.\,2}Weaknesses and Limitations}{17}{}%
-\contentsline {subsection}{\numberline {9\,.\,3}Areas for Improvement}{17}{}%
-\contentsline {section}{\numberline {10}References}{18}{}%
-\contentsline {section}{\numberline {11}Appendix}{19}{}%
-\contentsline {subsection}{\numberline {11\,.\,1}Key Implementation Code Snippets}{19}{}%
-\contentsline {subsubsection}{\numberline {11\,.\,1\,.\,1}Classical UC Model Implementation}{19}{}%
-\contentsline {subsubsection}{\numberline {11\,.\,1\,.\,2}QUBO Transformation Code}{20}{}%
+\contentsline {subsubsection}{\numberline {1\,.\,3\,.\,1}Problem 1 Analysis}{2}{}%
+\contentsline {subsubsection}{\numberline {1\,.\,3\,.\,2}Problem 2 Analysis}{2}{}%
+\contentsline {subsubsection}{\numberline {1\,.\,3\,.\,3}Problem 3 Analysis}{2}{}%
+\contentsline {subsubsection}{\numberline {1\,.\,3\,.\,4}Problem 4 Analysis}{3}{}%
+\contentsline {section}{\numberline {2}Assumptions}{3}{}%
+\contentsline {section}{\numberline {3}Notations}{4}{}%
+\contentsline {section}{\numberline {4}Problem 1: Classical Unit Commitment}{6}{}%
+\contentsline {subsection}{\numberline {4\,.\,1}Model description}{6}{}%
+\contentsline {subsubsection}{\numberline {4\,.\,1\,.\,1}Objective}{6}{}%
+\contentsline {subsubsection}{\numberline {4\,.\,1\,.\,2}Power balance and capacity}{6}{}%
+\contentsline {subsubsection}{\numberline {4\,.\,1\,.\,3}Logic and minimum-time constraints}{7}{}%
+\contentsline {subsubsection}{\numberline {4\,.\,1\,.\,4}Ramp rate}{7}{}%
+\contentsline {subsection}{\numberline {4\,.\,2}Solver performance}{8}{}%
+\contentsline {subsection}{\numberline {4\,.\,3}Dispatch analysis}{8}{}%
+\contentsline {section}{\numberline {5}Problem 2: Network and Security Constrained UC}{11}{}%
+\contentsline {subsection}{\numberline {5\,.\,1}Model extensions}{11}{}%
+\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,1}Flexible load modeling}{11}{}%
+\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,2}DC power flow}{12}{}%
+\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,3}Spinning reserve and response}{12}{}%
+\contentsline {subsubsection}{\numberline {5\,.\,1\,.\,4}N--1 contingencies}{13}{}%
+\contentsline {subsection}{\numberline {5\,.\,2}Results and analysis}{13}{}%
+\contentsline {section}{\numberline {6}Problem 3: QUBO Transformation and Quantum Solution}{17}{}%
+\contentsline {subsection}{\numberline {6\,.\,1}Binary encoding and penalties}{17}{}%
+\contentsline {subsection}{\numberline {6\,.\,2}Kaiwu workflow}{19}{}%
+\contentsline {subsection}{\numberline {6\,.\,3}Result comparison}{19}{}%
+\contentsline {section}{\numberline {7}Problem 4: Scale Reduction and Feasibility}{21}{}%
+\contentsline {subsection}{\numberline {7\,.\,1}Reduction strategy}{21}{}%
+\contentsline {subsection}{\numberline {7\,.\,2}Results}{21}{}%
+\contentsline {section}{\numberline {8}Strengths and Weaknesses}{22}{}%
+\contentsline {subsection}{\numberline {8\,.\,1}Strengths of Our Approach}{22}{}%
+\contentsline {subsection}{\numberline {8\,.\,2}Weaknesses and Limitations}{23}{}%
+\contentsline {subsection}{\numberline {8\,.\,3}Areas for Improvement}{23}{}%
+\contentsline {section}{\numberline {9}References}{23}{}%
+\contentsline {section}{\numberline {10}Appendix}{25}{}%
+\contentsline {subsection}{\numberline {10\,.\,1}Key Implementation Code Snippets}{25}{}%
+\contentsline {subsubsection}{\numberline {10\,.\,1\,.\,1}Classical UC Model Implementation}{25}{}%
+\contentsline {subsubsection}{\numberline {10\,.\,1\,.\,2}QUBO Transformation Code}{26}{}%
 \contentsfinish 

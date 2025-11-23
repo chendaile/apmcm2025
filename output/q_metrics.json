@@ -1,0 +1,31 @@
+{
+  "Q1": {
+    "peak_avg_MW": 174.57999999999998,
+    "valley_avg_MW": 193.05,
+    "start_stop_count": 0,
+    "max_ramp_MW": 17.4,
+    "max_ramp_detail": {
+      "unit": "U2",
+      "t_from": 23,
+      "t_to": 24,
+      "delta": -17.4
+    }
+  },
+  "Q3": {
+    "peak_avg_MW": 204.35999999999999,
+    "valley_avg_MW": 221.25,
+    "start_stop_count": 72,
+    "max_ramp_MW": 142.9,
+    "max_ramp_detail": {
+      "unit": "U1",
+      "t_from": 19,
+      "t_to": 20,
+      "delta": -142.9
+    }
+  },
+  "QUBO_meta": {
+    "dimension": 7024,
+    "nnz_upper": 16395,
+    "density": 0.0006645238693569176
+  }
+}

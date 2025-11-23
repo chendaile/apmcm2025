@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.26)  23 NOV 2025 01:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.8.26)  23 NOV 2025 12:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -800,7 +800,7 @@ LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
 
 
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 10.95pt on input line 40.
+(Font)              scaled to size 10.95pt on input line 43.
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
@@ -812,12 +812,12 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 ]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 17.28pt on input line 42.
+(Font)              scaled to size 17.28pt on input line 45.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 17.28pt on input line 42.
+(Font)              scaled to size 17.28pt on input line 45.
  (./main.toc
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/it' will be
-(Font)              scaled to size 12.0pt on input line 10.
+(Font)              scaled to size 12.0pt on input line 5.
 
 
 
@@ -842,9 +842,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [3]
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 14.4pt on input line 50.
+(Font)              scaled to size 14.4pt on input line 53.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 14.4pt on input line 50.
+(Font)              scaled to size 14.4pt on input line 53.
 
 
 
@@ -855,11 +855,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [1]
-LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 75.
- (c:/texlive/2025/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
-File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
-)
-LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
+LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
 (Font)              scaled to size 12.0pt on input line 75.
 
 
@@ -870,7 +866,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[2{c:/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
+[2]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -880,36 +876,36 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [3]
-LaTeX Font Info:    Trying to load font information for OT1+ntxtt on input line 120.
+LaTeX Font Info:    Trying to load font information for OT1+ntxtt on input line 114.
  (c:/texlive/2025/texmf-dist/tex/latex/newtx/ot1ntxtt.fd
 File: ot1ntxtt.fd 2012/04/20 v3.1
 )
 LaTeX Font Info:    Font shape `OT1/ntxtt/m/n' will be
-(Font)              scaled to size 12.0pt on input line 120.
+(Font)              scaled to size 12.0pt on input line 114.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/b/n' will be
-(Font)              scaled to size 10.95pt on input line 123.
+(Font)              scaled to size 10.95pt on input line 117.
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--142
+Underfull \hbox (badness 10000) in paragraph at lines 136--136
 []|$\LMS/ntxsy/m/n/12 T \U/ntxmia/m/it/12 =
  []
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 150--150
+Underfull \hbox (badness 1728) in paragraph at lines 144--144
 []|\OT1/minntx/m/n/12 Minimum up-/-down time re-quire-
  []
 
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 8.8pt on input line 159.
+(Font)              scaled to size 8.8pt on input line 153.
 LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
-(Font)              scaled to size 6.6pt on input line 159.
+(Font)              scaled to size 6.6pt on input line 153.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 12.0pt on input line 171.
+(Font)              scaled to size 12.0pt on input line 165.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 8.8pt on input line 171.
+(Font)              scaled to size 8.8pt on input line 165.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 6.6pt on input line 171.
+(Font)              scaled to size 6.6pt on input line 165.
 
-Underfull \hbox (badness 1454) in paragraph at lines 172--172
+Underfull \hbox (badness 1454) in paragraph at lines 166--166
 []|\OT1/minntx/m/n/12 Symmetric en-ergy ma-trix in the
  []
 
@@ -922,6 +918,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [4]
 
+
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 13.59999pt, for example:
 (fancyhdr)                \setlength{\headheight}{13.59999pt}.
@@ -929,9 +926,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [5]
-LaTeX Font Info:    Font shape `OT1/ntxtlf/b/it' will be
-(Font)              scaled to size 12.0pt on input line 179.
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -941,26 +935,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [6]
-Overfull \hbox (80.47766pt too wide) in paragraph at lines 210--212
-\OT1/minntx/m/n/12 The de-ter-min-is-tic workflow---shared be-tween the La-TeX de-scrip-tion and \OT1/ntxtt/m/n/12 src/QUBO/Q1-QUBO[]tmp.py\OT1/minntx/m/n/12 ---
- []
-
-
-Overfull \hbox (42.47476pt too wide) in paragraph at lines 215--216
-[]\OT1/minntx/b/n/12 Post-processing\OT1/minntx/m/n/12 : ex-port the on/off plan and dis-patch val-ues to \OT1/ntxtt/m/n/12 solution[]variables.xlsx
- []
-
-<figures/Q1-hot.png, id=42, 1549.79pt x 1980.39874pt>
-File: figures/Q1-hot.png Graphic file (type png)
-<use figures/Q1-hot.png>
-Package pdftex.def Info: figures/Q1-hot.png  used on input line 262.
-(pdftex.def)             Requested size: 333.23993pt x 425.80765pt.
-<figures/Q1-plot.png, id=43, 856.76085pt x 496.4949pt>
-File: figures/Q1-plot.png Graphic file (type png)
-<use figures/Q1-plot.png>
-Package pdftex.def Info: figures/Q1-plot.png  used on input line 269.
-(pdftex.def)             Requested size: 333.23993pt x 193.10948pt.
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -970,6 +944,17 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [7]
+<figures/Q1-hot.png, id=44, 1549.79pt x 1980.39874pt>
+File: figures/Q1-hot.png Graphic file (type png)
+<use figures/Q1-hot.png>
+Package pdftex.def Info: figures/Q1-hot.png  used on input line 278.
+(pdftex.def)             Requested size: 333.23993pt x 425.80765pt.
+<figures/Q1-plot.png, id=45, 856.76085pt x 496.4949pt>
+File: figures/Q1-plot.png Graphic file (type png)
+<use figures/Q1-plot.png>
+Package pdftex.def Info: figures/Q1-plot.png  used on input line 286.
+(pdftex.def)             Requested size: 333.23993pt x 193.10948pt.
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -987,11 +972,39 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[9 <./figures/Q1-hot.png (PNG copy)>]
-Overfull \hbox (8.03513pt too wide) in paragraph at lines 313--315
-\OT1/minntx/m/n/12 Each sce-nario also du-pli-cates Equa-tions []--[], guar-an-tee-ing fea-si-ble post-contingency
- []
+[9]
 
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[10 <./figures/Q1-hot.png (PNG copy)>]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[11 <./figures/Q1-plot.png>]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[12]
+<figures/Q2-bus-load.png, id=64, 1042.49475pt x 424.2249pt>
+File: figures/Q2-bus-load.png Graphic file (type png)
+<use figures/Q2-bus-load.png>
+Package pdftex.def Info: figures/Q2-bus-load.png  used on input line 371.
+(pdftex.def)             Requested size: 354.06862pt x 144.0792pt.
 
 
 
@@ -1001,90 +1014,105 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[10 <./figures/Q1-plot.png>]
-<figures/Q2-bus-load.png, id=59, 1042.49475pt x 424.2249pt>
-File: figures/Q2-bus-load.png Graphic file (type png)
-<use figures/Q2-bus-load.png>
-Package pdftex.def Info: figures/Q2-bus-load.png  used on input line 347.
-(pdftex.def)             Requested size: 354.06862pt x 144.0792pt.
-<figures/Q2-flow.png, id=60, 1445.4pt x 867.24pt>
+[13]
+<figures/Q2-flow.png, id=68, 1445.4pt x 867.24pt>
 File: figures/Q2-flow.png Graphic file (type png)
 <use figures/Q2-flow.png>
-Package pdftex.def Info: figures/Q2-flow.png  used on input line 354.
+Package pdftex.def Info: figures/Q2-flow.png  used on input line 379.
 (pdftex.def)             Requested size: 354.06862pt x 212.44258pt.
-<figures/Q2-flow-outage-flow.png, id=61, 3794.175pt x 2810.5pt>
+<figures/Q2-flow-outage-flow.png, id=69, 3794.175pt x 2810.5pt>
 File: figures/Q2-flow-outage-flow.png Graphic file (type png)
 <use figures/Q2-flow-outage-flow.png>
-Package pdftex.def Info: figures/Q2-flow-outage-flow.png  used on input line 361.
+Package pdftex.def Info: figures/Q2-flow-outage-flow.png  used on input line 387.
 (pdftex.def)             Requested size: 354.06862pt x 262.24007pt.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.95pt on input line 362.
+(Font)              scaled to size 10.95pt on input line 388.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 362.
+(Font)              scaled to size 8.0pt on input line 388.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 6.1pt on input line 362.
+(Font)              scaled to size 6.1pt on input line 388.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.95pt on input line 362.
+(Font)              scaled to size 10.95pt on input line 388.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 8.0pt on input line 362.
+(Font)              scaled to size 8.0pt on input line 388.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 6.1pt on input line 362.
+(Font)              scaled to size 6.1pt on input line 388.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.95pt on input line 362.
+(Font)              scaled to size 10.95pt on input line 388.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 8.0pt on input line 362.
+(Font)              scaled to size 8.0pt on input line 388.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.1pt on input line 362.
+(Font)              scaled to size 6.1pt on input line 388.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.95pt on input line 362.
+(Font)              scaled to size 10.95pt on input line 388.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 362.
+(Font)              scaled to size 8.0pt on input line 388.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.1pt on input line 362.
+(Font)              scaled to size 6.1pt on input line 388.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 10.95pt on input line 362.
+(Font)              scaled to size 10.95pt on input line 388.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 8.0pt on input line 362.
+(Font)              scaled to size 8.0pt on input line 388.
 LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
-(Font)              scaled to size 6.1pt on input line 362.
+(Font)              scaled to size 6.1pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.95pt on input line 362.
+(Font)              scaled to size 10.95pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 8.0pt on input line 362.
+(Font)              scaled to size 8.0pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.1pt on input line 362.
+(Font)              scaled to size 6.1pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.95pt on input line 362.
+(Font)              scaled to size 10.95pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 8.0pt on input line 362.
+(Font)              scaled to size 8.0pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.1pt on input line 362.
+(Font)              scaled to size 6.1pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.95pt on input line 362.
+(Font)              scaled to size 10.95pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 8.0pt on input line 362.
+(Font)              scaled to size 8.0pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.1pt on input line 362.
+(Font)              scaled to size 6.1pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.95pt on input line 362.
+(Font)              scaled to size 10.95pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 8.0pt on input line 362.
+(Font)              scaled to size 8.0pt on input line 388.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.1pt on input line 362.
-<figures/Q2-flow-outage-gen.png, id=62, 2710.125pt x 1204.5pt>
+(Font)              scaled to size 6.1pt on input line 388.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[14 <./figures/Q2-bus-load.png>]
+<figures/Q2-flow-outage-gen.png, id=74, 2710.125pt x 1204.5pt>
 File: figures/Q2-flow-outage-gen.png Graphic file (type png)
 <use figures/Q2-flow-outage-gen.png>
-Package pdftex.def Info: figures/Q2-flow-outage-gen.png  used on input line 368.
+Package pdftex.def Info: figures/Q2-flow-outage-gen.png  used on input line 395.
 (pdftex.def)             Requested size: 354.06862pt x 157.36241pt.
-<figures/Q2-load.png, id=63, 929.03085pt x 568.7649pt>
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[15 <./figures/Q2-flow.png> <./figures/Q2-flow-outage-flow.png (PNG copy)>]
+<figures/Q2-load.png, id=79, 929.03085pt x 568.7649pt>
 File: figures/Q2-load.png Graphic file (type png)
 <use figures/Q2-load.png>
-Package pdftex.def Info: figures/Q2-load.png  used on input line 375.
+Package pdftex.def Info: figures/Q2-load.png  used on input line 403.
 (pdftex.def)             Requested size: 312.41125pt x 191.25992pt.
-<figures/Q2-reserve.png, id=64, 856.76085pt x 496.4949pt>
+<figures/Q2-reserve.png, id=80, 856.76085pt x 496.4949pt>
 File: figures/Q2-reserve.png Graphic file (type png)
 <use figures/Q2-reserve.png>
-Package pdftex.def Info: figures/Q2-reserve.png  used on input line 382.
+Package pdftex.def Info: figures/Q2-reserve.png  used on input line 411.
 (pdftex.def)             Requested size: 291.58257pt x 168.9727pt.
 
 
@@ -1095,7 +1123,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[11]
+[16 <./figures/Q2-flow-outage-gen.png (PNG copy)> <./figures/Q2-load.png>]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1104,7 +1132,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[12 <./figures/Q2-bus-load.png> <./figures/Q2-flow.png>]
+[17 <./figures/Q2-reserve.png>]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1113,68 +1141,86 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[13 <./figures/Q2-flow-outage-flow.png (PNG copy)> <./figures/Q2-flow-outage-gen.png (PNG copy)>]
-<figures/Q3.png, id=76, 2007.5pt x 2007.5pt>
+[18]
+Overfull \hbox (9.67177pt too wide) in paragraph at lines 452--464
+ [][] 
+ []
+
+<figures/Q3.png, id=93, 2007.5pt x 2007.5pt>
 File: figures/Q3.png Graphic file (type png)
 <use figures/Q3.png>
-Package pdftex.def Info: figures/Q3.png  used on input line 429.
+Package pdftex.def Info: figures/Q3.png  used on input line 470.
 (pdftex.def)             Requested size: 354.06862pt x 354.044pt.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 10.0pt on input line 478.
+LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
+(Font)              scaled to size 10.0pt on input line 478.
+LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
+(Font)              scaled to size 7.3pt on input line 478.
+LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
+(Font)              scaled to size 5.5pt on input line 478.
+LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
+(Font)              scaled to size 10.0pt on input line 478.
+LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
+(Font)              scaled to size 7.3pt on input line 478.
+LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
+(Font)              scaled to size 5.5pt on input line 478.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 10.0pt on input line 478.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 7.3pt on input line 478.
+LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
+(Font)              scaled to size 5.5pt on input line 478.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 10.0pt on input line 478.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 7.3pt on input line 478.
+LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
+(Font)              scaled to size 5.5pt on input line 478.
+
+LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.5> not available
+(Font)              size <5> substituted on input line 478.
 
 
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[14 <./figures/Q2-load.png> <./figures/Q2-reserve.png>]
+LaTeX Font Warning: Font shape `OML/cmm/b/it' in size <5.5> not available
+(Font)              size <5> substituted on input line 478.
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+LaTeX Font Warning: Font shape `OMS/cmsy/b/n' in size <5.5> not available
+(Font)              size <5> substituted on input line 478.
 
-[15 <./figures/Q3.png (PNG copy)>]
-<../output/Q4/solve.png, id=85, 651.6345pt x 329.43076pt>
-File: ../output/Q4/solve.png Graphic file (type png)
-<use ../output/Q4/solve.png>
-Package pdftex.def Info: ../output/Q4/solve.png  used on input line 449.
-(pdftex.def)             Requested size: 333.23993pt x 168.46991pt.
-
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[16 <../output/Q4/solve.png (PNG copy)>]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[17]
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 13.59999pt, for example:
-(fancyhdr)                \setlength{\headheight}{13.59999pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
-
-[18] (c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2024/09/23 1.10c listings language file
-)
-LaTeX Font Info:    Font shape `OT1/ntxtt/m/n' will be
-(Font)              scaled to size 10.95pt on input line 510.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 10.0pt on input line 478.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 7.3pt on input line 478.
+LaTeX Font Info:    Font shape `OT1/minntx/b/n' will be
+(Font)              scaled to size 5.5pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 10.0pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 7.3pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
+(Font)              scaled to size 5.5pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 10.0pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 7.3pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
+(Font)              scaled to size 5.5pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 10.0pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 7.3pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
+(Font)              scaled to size 5.5pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 10.0pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 7.3pt on input line 478.
+LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
+(Font)              scaled to size 5.5pt on input line 478.
+LaTeX Font Info:    Font shape `OT1/ntxtlf/m/n' will be
+(Font)              scaled to size 7.3pt on input line 478.
 
 
 
@@ -1193,27 +1239,104 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[20] 
+[20 <./figures/Q3.png (PNG copy)>]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[21]
+<figures/Q4-hamiltonian.png, id=103, 651.6345pt x 329.43076pt>
+File: figures/Q4-hamiltonian.png Graphic file (type png)
+<use figures/Q4-hamiltonian.png>
+Package pdftex.def Info: figures/Q4-hamiltonian.png  used on input line 494.
+(pdftex.def)             Requested size: 333.23993pt x 168.46991pt.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[22 <./figures/Q4-hamiltonian.png (PNG copy)>]
+LaTeX Font Info:    Trying to load font information for TS1+ntxtlf on input line 536.
+ (c:/texlive/2025/texmf-dist/tex/latex/newtx/ts1ntxtlf.fd
+File: ts1ntxtlf.fd 2015/01/18 v1.0 fd file for TS1/ntxtlf
+)
+LaTeX Font Info:    Font shape `TS1/ntxtlf/m/n' will be
+(Font)              scaled to size 12.0pt on input line 536.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[23{c:/texlive/2025/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[24] (c:/texlive/2025/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+)
+LaTeX Font Info:    Font shape `OT1/ntxtt/m/n' will be
+(Font)              scaled to size 10.95pt on input line 559.
+
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[25]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[26] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (./main.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
+
+
+LaTeX Font Warning: Size substitutions with differences
+(Font)              up to 0.5pt have occurred.
+
  ) 
 Here is how much of TeX's memory you used:
- 14816 strings out of 467800
- 220013 string characters out of 5436061
- 897824 words of memory out of 5000000
- 43150 multiletter control sequences out of 15000+600000
- 684494 words of font info for 170 fonts, out of 8000000 for 9000
+ 14881 strings out of 467800
+ 220937 string characters out of 5436061
+ 897486 words of memory out of 5000000
+ 43200 multiletter control sequences out of 15000+600000
+ 705897 words of font info for 219 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,13n,131p,564b,2126s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,14n,131p,1429b,2126s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/NewTXMI7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/tex-gyre/qtmr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txexs.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txmiaX.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/txsys.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/txfonts/txtt.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmb.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmbi.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmr.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/newtx/ztmri.pfb>
-Output written on main.pdf (23 pages, 3312525 bytes).
+Output written on main.pdf (29 pages, 3332920 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
- 88 compressed objects within 1 object stream
+ 171 PDF objects out of 1000 (max. 8388607)
+ 101 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
